@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr" data-theme="light" data-font="normal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Comparateur privé de prix et de disponibilité de pièces Opel GT.">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-image-preview:none">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Comparateur de pièces - Portail Entraide Opel GT</title>
+  <link rel="icon" href="/static/pieces/assets/logo-entraide-opel-gt.jpg?v=1.1.15-ui1" type="image/jpeg">
+  <link rel="stylesheet" href="/static/pieces/styles.css?v=1.1.15">
+  <link rel="stylesheet" href="/static/common/responsive.css?v=1.1.15">
+</head>
+<body class="page-pieces">
+
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div id="appShell" class="shell hidden">
+    <header class="panel app-header">
+      <a class="brand" href="https://www.entraideopelgt.fr/" target="_blank" rel="noopener noreferrer" aria-label="Site de l'Entraide Opel GT">
+        <img src="/static/pieces/assets/logo-entraide-opel-gt.jpg?v=1.1.15-ui1" alt="Logo Entraide Opel GT">
+      </a>
+      <div class="header-copy">
+        <p class="eyebrow">Opel GT 1968-1973 : « Seul le vol procure plus de sensations ».</p>
+        <h1>Comparateur de pièces Opel GT</h1>
+        <p>Prix, stock et rapprochement des références chez fournisseurs européens et américains.</p>
+      </div>
+      <div class="display-controls" aria-label="Réglages d'affichage">
+        <div class="control-row control-row-connectivity">
+          <span id="connectivityBadge" class="connectivity-badge checking" role="status" aria-live="polite">
+            <span aria-hidden="true">●</span> Connexion Internet en cours de vérification
+          </span>
+        </div>
+        <div class="control-row">
+          <span id="sessionRemaining" class="session-timer" role="status" aria-live="polite">Temps restant avant déconnexion : --:--</span>
+        </div>
+        <div class="control-row control-row-theme">
+          <button id="themeButton" class="icon-button" type="button" aria-label="Basculer le mode clair ou sombre" title="Mode clair/sombre">
+            <span aria-hidden="true" id="themeIcon">☾</span>
+            <span id="themeLabel">Mode sombre</span>
+          </button>
+        </div>
+        <div class="control-row control-row-fonts">
+          <button id="fontDecrease" class="icon-button compact-control" type="button" aria-label="Diminuer la taille de la police" title="Diminuer la taille de la police">A−</button>
+          <button id="fontIncrease" class="icon-button compact-control" type="button" aria-label="Augmenter la taille de la police" title="Augmenter la taille de la police">A+</button>
+          <button id="logoutButton" class="secondary-button compact-control" type="button">Se déconnecter</button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="portal-nav panel" aria-label="Services du portail"><a href="/services">Retour à la liste des services</a><a href="/admin">Accès à la page d’administration</a></nav>
+
+    <main id="main">
+      <section class="panel search-panel" aria-labelledby="searchTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="searchTitle">Définir la recherche</h2>
+          </div>
+        </div>
+
+        <div class="catalog-rules" aria-label="Fonctionnement des catalogues fournisseurs">
+          <p>Les résultats proviennent de catalogues locaux contrôlés par le serveur :</p>
+          <ul>
+            <li>récupération automatique uniquement le dimanche à 00:00, en tâche de fond ;</li>
+            <li>aucune récupération n’est déclenchée par l’ouverture ou l’actualisation d’une page ;</li>
+            <li>pendant une synchronisation, la recherche est suspendue et réactivée automatiquement à la fin ;</li>
+            <li>une collecte défectueuse ne remplace jamais le dernier catalogue fournisseur valide.</li>
+          </ul>
+        </div>
+
+        <form id="searchForm">
+          <fieldset>
+            <legend>Sites à interroger <span class="required-badge">Obligatoire</span></legend>
+            <div class="site-selection-actions" aria-label="Sélection globale des fournisseurs">
+              <button id="selectAllSites" type="button" class="secondary-button" disabled aria-disabled="true">Tout cocher</button>
+              <button id="clearAllSites" type="button" class="secondary-button" disabled aria-disabled="true">Tout décocher</button>
+            </div>
+            <div id="sitesState" class="sites-state sites-state-checking" role="status" aria-live="polite">
+              <span class="spinner" aria-hidden="true"></span>
+              <strong>Vérification de la disponibilité des boutiques…</strong>
+              <span>Merci de patienter quelques secondes.</span>
+            </div>
+            <div id="sitesGrid" class="choice-grid sites-grid" aria-busy="true"></div>
+            <div class="sync-summary catalog-summary-below-sites" aria-live="polite">
+              <p id="lastSyncDate">Dernière synchronisation : jamais</p>
+              <p id="catalogSyncState">Catalogues fournisseurs : statut en cours de lecture…</p>
+            </div>
+            <div id="catalogWaitNotice" class="alert alert-info catalog-wait-notice hidden" role="status" aria-live="assertive">
+              Synchronisation des catalogues en cours. La recherche est temporairement désactivée.
+            </div>
+            <div id="catalogProgressPanel" class="catalog-progress-panel hidden" aria-live="polite">
+              <div class="catalog-progress-heading"><span>Progression globale</span><strong id="catalogGlobalPercent">0 %</strong></div>
+              <progress id="catalogGlobalBar" class="catalog-progress-meter progress-pending" max="100" value="0">0 %</progress>
+              <p id="catalogCurrentSupplier" class="catalog-current-supplier"></p>
+              <div id="catalogSupplierProgress" class="catalog-supplier-progress"></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Modèle de véhicule imposé <span class="required-badge">GT 1900</span></legend>
+            <div class="choice-grid models-grid" role="radiogroup" aria-label="Modèle de véhicule">
+              <label class="choice-card disabled-choice" title="Recherche temporairement désactivée pour la GT/J">
+                <input type="radio" name="model" value="gtj" disabled aria-disabled="true" tabindex="-1">
+                <span class="choice-check" aria-hidden="true"></span>
+                <span><strong>Opel GT/J</strong><small>Version simplifiée, 1971–1973</small></span>
+              </label>
+              <label class="choice-card enforced-choice" title="Modèle imposé pour cette version du comparateur">
+                <input type="radio" name="model" value="1900" checked required>
+                <span class="choice-check" aria-hidden="true"></span>
+                <span><strong>Opel GT 1900</strong><small>Moteur 1,9 L CIH</small></span>
+              </label>
+              <label class="choice-card disabled-choice" title="Recherche temporairement désactivée pour la GT 1100">
+                <input type="radio" name="model" value="1100" disabled aria-disabled="true" tabindex="-1">
+                <span class="choice-check" aria-hidden="true"></span>
+                <span><strong>Opel GT 1100</strong><small>Moteur 1,1 L OHV</small></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field-block">
+            <label for="keywords">Mots-clés de la pièce, en français <span class="required-badge">Obligatoire</span></label>
+            <div class="search-input-wrap">
+              <span aria-hidden="true">⌕</span>
+              <input id="keywords" name="keywords" type="search" minlength="2" maxlength="160" autocomplete="off" placeholder="Ex. câble embrayage" required disabled aria-disabled="true">
+            </div>
+            <p class="help">La saisie est activée dès qu’au moins un catalogue fournisseur a été récupéré. Les termes sont ensuite recherchés dans les catalogues locaux issus de la dernière synchronisation.</p>
+            <div class="query-examples" aria-label="Exemples et règles de recherche">
+              <span>Exemples et différences :</span>
+              <ul class="query-example-list">
+                <li><button type="button" class="example-query" data-query="câble embrayage">câble embrayage</button><span>au moins un des deux mots doit apparaître dans le titre de la pièce ; les titres contenant les deux sont classés en premier.</span></li>
+                <li><button type="button" class="example-query" data-query="+câble +embrayage">+câble +embrayage</button><span>les deux mots sont obligatoires dans le titre, dans n’importe quel ordre.</span></li>
+                <li><button type="button" class="example-query" data-query='"câble embrayage"'>"câble embrayage"</button><span>l’expression complète doit apparaître dans cet ordre après normalisation et traduction des titres fournisseurs.</span></li>
+                <li><button type="button" class="example-query" data-query="joint capot -occasion">joint capot -occasion</button><span>« joint » ou « capot » doit apparaître, mais tout titre contenant « occasion » est exclu.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="formError" class="alert alert-error hidden" role="alert"></div>
+          <div class="form-actions">
+            <button id="searchButton" type="submit" class="primary-button" disabled>
+              <span aria-hidden="true">⌕</span> Comparer les pièces
+            </button>
+            <p>La recherche est disponible dès que les catalogues des fournisseurs sélectionnés sont prêts.</p>
+          </div>
+        </form>
+      </section>
+
+      <section id="resultsPanel" class="panel results-panel" aria-labelledby="resultsTitle">
+        <div class="section-heading results-heading">
+          <div>
+            <h2 id="resultsTitle">Résultats de la recherche</h2>
+            <p id="resultsSummary" class="muted">Sélectionnez un modèle, saisissez une pièce et lancez la recherche.</p>
+          </div>
+          <button id="exportCsvButton" type="button" class="secondary-button hidden">Exporter les résultats en CSV</button>
+        </div>
+
+        <div id="progressPanel" class="progress-panel hidden" aria-live="polite">
+          <div class="progress-copy">
+            <span class="spinner large" aria-hidden="true"></span>
+            <div>
+              <h3>Recherche en cours</h3>
+              <p id="progressText">Recherche dans les catalogues fournisseurs synchronisés…</p>
+            </div>
+          </div>
+          <div class="progress-track"><span></span></div>
+        </div>
+
+        <div id="resultsContent" class="hidden">
+          <aside id="suggestionsPanel" class="suggestions-panel hidden" aria-labelledby="suggestionsTitle">
+            <h3 id="suggestionsTitle">Suggestions pour préciser la recherche</h3>
+            <p id="suggestionsReason"></p>
+            <div id="suggestionList" class="suggestion-list" aria-label="Suggestions de recherche"></div>
+          </aside>
+          <div id="resultsControls" class="results-controls hidden" aria-label="Filtres et tri des résultats">
+            <div class="result-control">
+              <label for="supplierFilter">Fournisseur</label>
+              <select id="supplierFilter">
+                <option value="">Tous les fournisseurs</option>
+              </select>
+            </div>
+            <div class="result-control price-filter-control">
+              <span class="control-label">Prix</span>
+              <div class="price-filter-fields">
+                <label for="priceMin"><span>Minimum</span><input id="priceMin" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Min"></label>
+                <label for="priceMax"><span>Maximum</span><input id="priceMax" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Max"></label>
+              </div>
+            </div>
+            <div class="result-control">
+              <label for="availabilityFilter">Disponibilité</label>
+              <select id="availabilityFilter">
+                <option value="">Toutes les disponibilités</option>
+                <option value="in_stock">En stock</option>
+                <option value="low_stock">Stock limité</option>
+                <option value="out_of_stock">Pas en stock</option>
+                <option value="restocking">Réapprovisionnement</option>
+                <option value="on_request">Sur demande</option>
+                <option value="unknown">À confirmer</option>
+              </select>
+            </div>
+            <div class="result-control">
+              <label for="sortResults">Trier par</label>
+              <select id="sortResults">
+                <option value="price_asc" selected>Prix croissant</option>
+                <option value="price_desc">Prix décroissant</option>
+                <option value="availability">Disponibilité</option>
+                <option value="confidence_asc">Confiance croissante</option>
+                <option value="confidence_desc">Confiance décroissante</option>
+                <option value="supplier">Fournisseur</option>
+              </select>
+            </div>
+            <div class="result-control">
+              <label for="pageSize">Résultats par page</label>
+              <select id="pageSize">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100" selected>100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+              </select>
+            </div>
+            <div class="result-control reset-control">
+              <button id="resetResultFilters" type="button" class="secondary-button">Réinitialiser les filtres</button>
+            </div>
+            <p id="filterSummary" class="filter-summary" role="status" aria-live="polite"></p>
+          </div>
+
+          <div id="resultsTableWrap" class="results-table-wrap hidden" role="region" tabindex="0" aria-label="Résultats du comparateur, défilement horizontal sur écran étroit">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th scope="col">Titre de la pièce</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Fournisseur</th>
+                  <th scope="col">Prix / évolution</th>
+                  <th scope="col">Disponibilité</th>
+                  <th scope="col">Confiance</th>
+                  <th scope="col" class="action-column">Retirer</th>
+                </tr>
+              </thead>
+              <tbody id="resultsTableBody"></tbody>
+            </table>
+          </div>
+          <div id="emptyState" class="empty-state hidden">
+            <div aria-hidden="true">⌕</div>
+            <h3 id="emptyStateTitle">Aucun résultat trouvé</h3>
+            <p id="emptyStateText">Essayez une autre formulation ou l'un des mots-clés proposés ci-dessus.</p>
+          </div>
+          <nav id="pagination" class="pagination hidden" aria-label="Pagination des résultats">
+            <button id="prevPage" type="button" class="secondary-button">← Précédent</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage" type="button" class="secondary-button">Suivant →</button>
+          </nav>
+        </div>
+      </section>
+
+      <section class="panel suppliers-panel" aria-labelledby="suppliersTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="suppliersTitle">Informations fournisseurs</h2>
+            <p class="muted">Coordonnées publiées par les fournisseurs. Les positions GPS sont indicatives et les visites peuvent nécessiter un rendez-vous.</p>
+          </div>
+        </div>
+        <div class="supplier-info-grid">
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-splendid-parts.svg?v=1.1.15-ui1" alt="Logo SplendidParts"><h3 class="supplier-name-badge supplier-splendid">SplendidParts</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://splenditparts.de/shop/en/70-opel-gt" target="_blank" rel="noopener noreferrer">splenditparts.de</a></dd></div><div><dt>Adresse</dt><dd>Zum Findling 1, 17209 Leizen, Allemagne</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+493992282382">+49 39922 82382</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:sp-info@splendidparts.de">sp-info@splendidparts.de</a></dd></div><div><dt>GPS indicatif</dt><dd>53.3650, 12.4760</dd></div><div><dt>Horaires</dt><dd>Non publiés</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=Zum+Findling+1+17209+Leizen" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://splenditparts.de/shop/en/contact-us" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-oldtimer-motorenteile.svg?v=1.1.15-ui1" alt="Logo Oldtimer Motorenteile"><h3 class="supplier-name-badge supplier-oldtimer">Oldtimer Motorenteile</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://www.oldtimer-motorenteile.com/?cat=c898_Opel-GT--68---73-Opel-GT--68---73.html" target="_blank" rel="noopener noreferrer">oldtimer-motorenteile.com</a></dd></div><div><dt>Adresse</dt><dd>Revalstr. 6, 23560 Lübeck, Allemagne</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+494512033525">+49 451 2033525</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:f.mellmann@t-online.de">f.mellmann@t-online.de</a></dd></div><div><dt>GPS indicatif</dt><dd>53.8098, 10.6529</dd></div><div><dt>Horaires</dt><dd>Non publiés</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=Revalstrasse+6+23560+Lubeck" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://www.oldtimer-motorenteile.com/shop_content.php?coID=4" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-opel-gt-source.svg?v=1.1.15-ui1" alt="Logo Opel GT Source"><h3 class="supplier-name-badge supplier-ogts">Opel GT Source</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://www.opelgtsource.com/search?car_id=4" target="_blank" rel="noopener noreferrer">opelgtsource.com</a></dd></div><div><dt>Adresse</dt><dd>18211 Zeni Lane, Tuolumne, CA 95379, États-Unis</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+18006735487">+1 800 673-5487</a> · international <a href="tel:+12099281110">+1 209 928-1110</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:OpelGTS@OpelGTSource.com">OpelGTS@OpelGTSource.com</a></dd></div><div><dt>GPS indicatif</dt><dd>37.9608, −120.2374</dd></div><div><dt>Horaires</dt><dd>Lun.–ven. 8 h–17 h, heure du Pacifique, hors jours fériés</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=18211+Zeni+Lane+Tuolumne+CA+95379" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://www.opelgtsource.com/contact" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-pro-gt.svg?v=1.1.15-ui1" alt="Logo GT Teile"><h3 class="supplier-name-badge supplier-progt">GT Teile</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://www.pro-gt.de/en/" target="_blank" rel="noopener noreferrer">pro-gt.de</a></dd></div><div><dt>Adresse</dt><dd>Wolfgang Gröger, Hauptstraße 18a, 67699 Heiligenmoschel, Allemagne</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+4963634020260">+49 6363 4020260</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:gt1900@freenet.de">gt1900@freenet.de</a></dd></div><div><dt>GPS indicatif</dt><dd>49.5583, 7.7600</dd></div><div><dt>Horaires</dt><dd>Non publiés</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=Hauptstrasse+18a+67699+Heiligenmoschel" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://www.pro-gt.de/de/" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-opelix-parts.svg?v=1.1.15-ui1" alt="Logo Opelix Parts"><h3 class="supplier-name-badge supplier-opelix">Opelix Parts</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://www.opelixparts.com/9-gt-1968-73" target="_blank" rel="noopener noreferrer">opelixparts.com</a></dd></div><div><dt>Adresse</dt><dd>1 rue du Chêne Vert, 46220 Prayssac, France</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+33636073761">+33 6 36 07 37 61</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:contact@opelixparts.com">contact@opelixparts.com</a></dd></div><div><dt>GPS indicatif</dt><dd>44.5039, 1.1881</dd></div><div><dt>Horaires</dt><dd>Non publiés</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=1+rue+du+Chene+Vert+46220+Prayssac" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://www.opelixparts.com/nous-contacter" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-atz-online.svg?v=1.1.15-ui1" alt="Logo ATZ Online"><h3 class="supplier-name-badge supplier-atz">ATZ Online</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://atz-online.com/?s=%22opel+gt%22&amp;post_type=product" target="_blank" rel="noopener noreferrer">atz-online.com</a></dd></div><div><dt>Adresse</dt><dd>Steinheimer Straße 16, 63179 Obertshausen-Hausen, Allemagne</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+49610475091">+49 6104 75091</a> · mobile <a href="tel:+491718319482">+49 171 8319482</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:kundenservice@atz-online.com">kundenservice@atz-online.com</a></dd></div><div><dt>GPS indicatif</dt><dd>50.0833, 8.8500</dd></div><div><dt>Horaires</dt><dd>Lun.–jeu. 9 h–12 h et 13 h–17 h · ven. 9 h–13 h · sam. sur rendez-vous</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=Steinheimer+Strasse+16+63179+Obertshausen" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://atz-online.com/kontakt/" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-edelschmiede.svg?v=1.1.15-ui1" alt="Logo Edelschmiede"><h3 class="supplier-name-badge supplier-edel">Edelschmiede</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://www.edelschmiede.com/GT_1" target="_blank" rel="noopener noreferrer">edelschmiede.com</a></dd></div><div><dt>Adresse</dt><dd>Wierener Weg 1, 29559 Wrestedt / Emern, Allemagne</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+495825831138">+49 5825 831138</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:shop@edelschmiede.com">shop@edelschmiede.com</a></dd></div><div><dt>GPS indicatif</dt><dd>52.9056, 10.5796</dd></div><div><dt>Horaires</dt><dd>Non publiés ; enlèvement sur rendez-vous préalable</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=Wierener+Weg+1+29559+Wrestedt" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://www.edelschmiede.com/FAQ" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+          <article class="supplier-info-card">
+            <div class="supplier-identity"><img src="/static/pieces/assets/logo-tw-oldtimerteile.svg?v=1.1.15-ui1" alt="Logo TW-Oldtimerteile"><h3 class="supplier-name-badge supplier-tw">TW-Oldtimerteile</h3></div>
+            <dl><div><dt>Site web</dt><dd><a href="https://shop.tw-oldtimerteile.de/Opel-Typen/Opel-GT/" target="_blank" rel="noopener noreferrer">shop.tw-oldtimerteile.de</a></dd></div><div><dt>Adresse</dt><dd>Torsten Winter, Weidweg 2, 64823 Groß-Umstadt, Allemagne</dd></div><div><dt>Téléphone</dt><dd><a href="tel:+49607874639">+49 6078 74639</a></dd></div><div><dt>E-mail</dt><dd><a href="mailto:opel.winter@t-online.de">opel.winter@t-online.de</a></dd></div><div><dt>GPS indicatif</dt><dd>Non publié</dd></div><div><dt>Horaires</dt><dd>Non publiés</dd></div></dl>
+            <div class="supplier-links"><a href="https://www.google.com/maps/search/?api=1&query=Weidweg+2+64823+Gross-Umstadt" target="_blank" rel="noopener noreferrer">Carte ↗</a><a href="https://shop.tw-oldtimerteile.de/Impressum/" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="panel app-footer">
+      <div class="footer-badges" aria-label="Technologies utilisées">
+        <div class="footer-badge-line">
+          <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
+          <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.128-009688?logo=fastapi&logoColor=white">
+          <img alt="HTML5" src="https://img.shields.io/badge/HTML5-interface-E34F26?logo=html5&logoColor=white">
+          <img alt="CSS3" src="https://img.shields.io/badge/CSS3-responsive-1572B6?logo=css3&logoColor=white">
+          <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?logo=javascript&logoColor=111">
+        </div>
+        <div class="footer-badge-line">
+          <img alt="Beautiful Soup" src="https://img.shields.io/badge/Beautiful_Soup-4.14-59666C">
+          <img alt="HTTPX" src="https://img.shields.io/badge/HTTPX-async-5A29E4">
+          <img alt="SQLite" src="https://img.shields.io/badge/SQLite-cache_persistant-003B57?logo=sqlite&logoColor=white">
+          <img alt="systemd" src="https://img.shields.io/badge/systemd-service_Linux-5C5C5C?logo=linux&logoColor=white">
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Auteur : Nicolas Lermé - Copyright 2026</p>
+        <p class="made-with-love">Fait avec amour <span aria-label="cœur">❤️</span></p>
+      </div>
+    </footer>
+  </div>
+  <script src="/static/common/portal_ui.js?v=1.1.15" defer></script>
+  <script src="/static/common/session_timer.js?v=1.1.15" defer></script>
+  <script src="/static/pieces/app.js?v=1.1.15" defer></script>
+</body>
+</html>

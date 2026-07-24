@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr" data-theme="light" data-font="normal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Connexion administrateur - Portail Entraide Opel GT</title>
+  <link rel="icon" href="/static/common/logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/static/common/base.css?v=1.1.15">
+  <link rel="stylesheet" href="/static/bulletins/styles.css?v=1.1.15">
+  <link rel="stylesheet" href="/static/common/responsive.css?v=1.1.15">
+</head>
+<body class="page-admin">
+  <dialog id="loginDialog">
+    <form id="loginForm" class="dialog-card" method="dialog" novalidate>
+      <div class="brand-line brand-line-logo brand-line-logo-only">
+        <img class="brand-logo" src="/static/common/logo.jpg" alt="Entraide Opel GT">
+      </div>
+      <div class="login-controls admin-login-controls admin-login-controls-inline" aria-label="État Internet et réglages d’affichage">
+        <span class="connectivity-badge checking" data-connectivity-status role="status" aria-live="polite"><span aria-hidden="true">●</span> Vérification Internet…</span>
+        <button type="button" class="icon-button" data-ui-theme><span data-theme-icon aria-hidden="true">☀</span>&nbsp;<span data-theme-label>Mode clair</span></button>
+        <button type="button" class="icon-button compact-control" data-ui-font-decrease aria-label="Diminuer la taille du texte">A−</button>
+        <button type="button" class="icon-button compact-control" data-ui-font-increase aria-label="Augmenter la taille du texte">A+</button>
+      </div>
+      <h1>Connexion administrateur</h1>
+      <p class="eyebrow login-subtitle">Administration locale</p>
+      <p>Ce compte est indépendant du compte membre du site du club.</p>
+      <p id="adminSessionPolicy" class="muted">La session locale expire automatiquement après 30 minutes. Une fois ce délai écoulé, vous serez automatiquement redirigé vers cette page.</p>
+      <label for="username">Identifiant</label>
+      <input id="username" autocomplete="username" value="admin" required>
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <div id="loginMessage" class="message hidden" role="alert"></div>
+      <button type="submit">Se connecter</button>
+    </form>
+  </dialog>
+
+  <header id="header" class="panel app-header hidden admin-header">
+    <a class="brand" href="/services"><img src="/static/common/logo.jpg" alt="Logo Entraide Opel GT"></a>
+    <div class="header-copy">
+      <p class="eyebrow">Opel GT 1968-1973 : « Seul le vol procure plus de sensations ».</p>
+      <h1 class="admin-header-title">Page d'administration du portail</h1>
+      <p>Supervision du portail, des bulletins, des catalogues et des tâches de fond.</p>
+    </div>
+    <div class="display-controls" aria-label="État et réglages d’affichage">
+      <div class="control-row"><span class="connectivity-badge checking" data-connectivity-status role="status" aria-live="polite"><span aria-hidden="true">●</span> Vérification Internet…</span></div>
+      <div class="control-row"><span id="sessionRemaining" class="session-timer" role="status" aria-live="polite">Temps restant avant déconnexion : --:--</span></div>
+      <div class="control-row"><button type="button" class="icon-button" data-ui-theme><span data-theme-icon aria-hidden="true">☀</span>&nbsp;<span data-theme-label>Mode clair</span></button></div>
+      <div class="control-row control-row-fonts">
+        <button type="button" class="icon-button" data-ui-font-decrease aria-label="Diminuer la taille du texte">A−</button>
+        <button type="button" class="icon-button" data-ui-font-increase aria-label="Augmenter la taille du texte">A+</button>
+        <button id="logout" type="button" class="button-secondary compact-control">Se déconnecter</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="hidden admin-main">
+    <section class="panel admin-panel">
+      <div class="admin-tabs" role="tablist">
+        <button class="admin-tab active" data-tab="config">Configuration</button>
+        <button class="admin-tab" data-tab="control">Contrôle serveur</button>
+        <button class="admin-tab" data-tab="jobs">Tâches de fond</button>
+        <button class="admin-tab" data-tab="logs">Logs</button>
+        <button class="admin-tab" data-tab="status">État général</button>
+        <button class="admin-tab" data-tab="stats">Statistiques</button>
+      </div>
+      <section id="tab-config" class="admin-tab-panel active">
+        <h2>Éditeur de configuration</h2>
+        <p id="configPath" class="muted"></p>
+        <p class="muted">La planification des mises à jour système se règle dans <code>maintenance.weekly_package_update_*</code>. Enregistrez, puis utilisez « Appliquer et redémarrer ».</p>
+        <div id="configEditor" class="code-editor" data-language="json" aria-label="Configuration JSON"></div>
+        <div class="actions"><button id="saveConfig">Enregistrer</button><button data-control="apply-config" class="button-secondary">Appliquer et redémarrer</button><button id="reloadConfig" class="button-secondary">Recharger</button></div>
+        <div id="configMessage" class="message hidden"></div>
+      </section>
+      <section id="tab-control" class="admin-tab-panel">
+        <h2>Contrôle du serveur</h2>
+        <p class="muted">Les actions root passent par un socket Unix limité aux commandes autorisées.</p>
+        <div class="admin-actions-grid">
+          <button data-control="status">État actuel</button>
+          <button data-control="cleanup-locks" class="button-secondary">Nettoyer les verrous obsolètes</button>
+          <button data-control="restart" class="button-secondary">Redémarrer le portail</button>
+          <button data-control="stop" class="danger-button">Arrêter le portail</button>
+        </div>
+        <pre id="controlOutput" class="admin-output"></pre>
+      </section>
+      <section id="tab-jobs" class="admin-tab-panel">
+        <h2>Tâches de fond</h2>
+        <p class="muted">File persistante SQLite : OCR et catalogues survivent aux redémarrages.</p>
+        <div id="jobsTable"></div>
+      </section>
+      <section id="tab-logs" class="admin-tab-panel">
+        <h2>Consultation des logs</h2>
+        <div class="actions"><button id="refreshLogs">Rafraîchir</button></div>
+        <div id="logsContainer" class="logs-container"></div>
+      </section>
+      <section id="tab-status" class="admin-tab-panel">
+        <h2>État général</h2>
+        <div id="generalStatus" class="admin-status-grid"></div>
+        <article class="system-metrics-card" aria-labelledby="systemMetricsTitle">
+          <div class="system-metrics-heading">
+            <div><h3 id="systemMetricsTitle">Utilisation des ressources</h3><p>Évolution dynamique de chaque cœur processeur et de la mémoire vive.</p></div>
+            <div class="system-metrics-side">
+              <label class="metrics-refresh-control" for="metricsRefreshInterval">Rafraîchissement
+                <select id="metricsRefreshInterval">
+                  <option value="1000">1 seconde</option>
+                  <option value="2000">2 secondes</option>
+                  <option value="5000">5 secondes</option>
+                  <option value="10000">10 secondes</option>
+                  <option value="30000">30 secondes</option>
+                </select>
+              </label>
+              <div id="systemMetricsLegend" class="system-metrics-legend" aria-live="polite"></div>
+            </div>
+          </div>
+          <div id="systemMetricsChartWrap" class="system-metrics-chart-wrap">
+            <canvas id="systemMetricsChart" role="img" aria-label="Graphique de l’utilisation de chaque cœur processeur et de la mémoire vive"></canvas>
+            <div id="systemMetricsTooltip" class="system-metrics-tooltip hidden" role="status"></div>
+          </div>
+        </article>
+      </section>
+      <section id="tab-stats" class="admin-tab-panel">
+        <h2>Statistiques</h2>
+        <div id="statistics" class="statistics-summary"></div>
+        <div id="connectionStatistics" class="connection-statistics"></div>
+      </section>
+    </section>
+  </main>
+  <script src="/static/common/portal_ui.js?v=1.1.15"></script>
+  <script src="/static/common/session_timer.js?v=1.1.15"></script>
+  <script src="/static/admin/code_editor.js?v=1.1.15"></script>
+  <script src="/static/admin/admin.js?v=1.1.15"></script>
+</body>
+</html>
