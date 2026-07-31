@@ -1,0 +1,14 @@
+[Unit]
+Description=Portail Entraide Opel GT - canal de contrôle privilégié
+
+[Socket]
+ListenStream=/run/portail-entraide-opel-gt/control.sock
+Accept=yes
+SocketUser=root
+SocketGroup=opelgt
+SocketMode=0660
+DirectoryMode=0750
+RemoveOnStop=true
+
+[Install]
+WantedBy=sockets.target
