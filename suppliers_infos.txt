@@ -1,8 +1,0 @@
-https://www.opelixparts.com/9-gt-1968-73 | fr | use-website-engine-search=false
-https://splenditparts.de/shop/en/70-opel-gt | en | use-website-engine-search=false
-https://www.edelschmiede.com/GT_1 | en | use-website-engine-search=false
-https://www.pro-gt.de/en/ | en | use-website-engine-search=true
-https://atz-online.com/?s=%22opel+gt%22&post_type=product | de | use-website-engine-search=false
-https://www.opelgtsource.com/search?car_id=4 | en | use-website-engine-search=false
-https://www.oldtimer-motorenteile.com/?cat=c898_Opel-GT--68---73-Opel-GT--68---73.html | en | use-website-engine-search=false
-https://shop.tw-oldtimerteile.de/Opel-Typen/Opel-GT/ | de | use-website-engine-search=false
