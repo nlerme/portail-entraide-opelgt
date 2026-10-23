@@ -2,18 +2,6 @@
 
 **Version 1.1.21 — Linux serveur**
 
-Version 1.1.21 du 23 octobre 2026 : captures **Liste des services** et **Petites annonces** fournies actualisées dans ce README, onglet **Notifications** dans l’administration pour les identifiants ntfy et l’intervalle d’envoi, limité à **une notification au maximum par période de 24 heures**.
-
-Version 1.1.20 du 23 octobre 2026 : notifications **ntfy** d’incident et de rétablissement, configuration à l’installation, collecteur Leboncoin remplacé par **etienne-hd/lbc 1.1.7**, prix sur les cartes d’annonces et sources **Classic Number** / **Classic Trader**.
-
-Version 1.1.19 du 23 octobre 2026 : ajout du service **Petites annonces**, avec sélection des sources, cinq tris et collecte quotidienne à 02:00 (Europe/Paris). Pendant la collecte, son accès est désactivé et les annonces déjà affichées sont masquées. Le traitement GT Teile sépare désormais la collecte du catalogue et la traduction afin d’éviter les attentes prolongées autour de 79 %.
-
-Correctif 1.1.18 du 23 octobre 2026 : progression réelle étendue aux huit catalogues, arrêt et désactivation de Cloudflare lors de la purge, et version du bundle centralisée dans `VERSION` avec contrôles de cohérence.
-
-Correctif Edelschmiede du 23 octobre 2026 : récupération et traduction bornées, progression réelle par pièce et arrêt contrôlé en cas d’indisponibilité prolongée. Le test complet a récupéré 277 pièces avec leurs prix et disponibilités en environ deux minutes.
-
-Correctif ciblé du 23 octobre 2026 : mises à jour des catalogues ATZ et Opel GT Source, et maintien de la connexion Cloudflare Tunnel. Les autres fonctionnalités sont conservées.
-
 Portail web auto-hébergé réunissant six services dans une interface commune : recherche dans les bulletins, comparaison de pièces, petites annonces d’Opel GT d’époque en France, couples de serrage avec localisation sur vues éclatées, fiche d’intervention et fiche d’inventaire.
 
 Le portail est conçu pour fonctionner en permanence sur un Raspberry Pi ou un petit serveur Debian/Ubuntu. Il s’installe sans Docker, démarre automatiquement avec `systemd`, conserve ses données localement et n’ouvre aucun navigateur sur la machine hôte.
