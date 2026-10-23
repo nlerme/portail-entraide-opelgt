@@ -1,0 +1,611 @@
+/* Socle responsive commun : évite les débordements globaux sans casser les tableaux défilables propres à chaque service. */
+html,body{max-width:100%}
+body{overflow-x:hidden}
+main,header,footer,nav,section,article,.panel,.card,.service-card,.header-copy,.display-controls{min-width:0}
+img,canvas,video{height:auto;max-width:100%}
+input,select,textarea,button{min-width:0;max-width:100%}
+pre,code{overflow-wrap:anywhere}
+.portal-nav{max-width:100%}
+@media(max-width:900px){
+  .portal-nav{display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto!important;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch}
+  .portal-nav a{flex:0 0 auto!important;min-width:auto!important;white-space:nowrap;scroll-snap-align:start}
+}
+@media(max-width:560px){
+  .panel,.card,.service-card{max-width:100%}
+  .app-footer,.footer-bottom{overflow-wrap:anywhere}
+}
+
+/* Fond clair uniforme et commandes communes. */
+html[data-theme="light"] body{background:#f3f5fb!important;background-image:none!important}
+html[data-theme="dark"] body{background:#0e1520!important}
+@media(max-width:1120px){
+  .services-header{grid-template-columns:minmax(130px,200px) minmax(0,1fr)}
+  .services-header .display-controls{grid-column:1/-1;width:min(100%,32rem);justify-self:center}
+}
+@media(max-width:620px){
+  .services-header{grid-template-columns:1fr;text-align:center}
+  .services-header .display-controls{width:100%;max-width:none}
+  .services-header .control-row-fonts{grid-template-columns:1fr 1fr}
+  .services-header .control-row-fonts .logout-control{grid-column:1/-1}
+  .services-title{font-size:clamp(1.05rem,6vw,1.45rem)!important}
+  .login-controls .control-row-fonts{grid-template-columns:1fr 1fr}
+  .login-controls .control-row-fonts [data-ui-theme]{grid-column:1/-1}
+}
+
+.connectivity-badge{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;width:100%;min-height:2.9rem;padding:.48rem .65rem;border:1px solid var(--border,var(--line,#d8e0e9));border-radius:12px;background:#fff;color:#17202a;font-size:.76rem;font-weight:800;text-align:center}
+.connectivity-badge.online span{color:#198754}.connectivity-badge.offline span{color:#c62828}.connectivity-badge.checking span{color:#1643ba}
+
+/* Commandes d’état/accessibilité et page de connexion membre. */
+.display-controls button,
+.display-controls .connectivity-badge,
+.display-controls .session-timer,
+.login-controls button,
+.login-controls .connectivity-badge,
+.login-controls .session-timer{
+  font-weight:850!important;
+}
+
+.display-controls .icon-button,
+.display-controls .portal-control,
+.display-controls .button-secondary,
+.display-controls .secondary-button,
+.login-controls .icon-button{
+  min-height:2.9rem!important;
+  border:1px solid #cbd5e1!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  color:#17202a!important;
+  box-shadow:none!important;
+}
+
+.connectivity-badge.online{
+  border-color:#146c43!important;
+  background:#198754!important;
+  color:#fff!important;
+}
+.connectivity-badge.offline{
+  border-color:#9f1d24!important;
+  background:#c62828!important;
+  color:#fff!important;
+}
+.connectivity-badge.checking{
+  border-color:#1643ba!important;
+  background:#1d4ed8!important;
+  color:#fff!important;
+}
+.connectivity-badge.online span,
+.connectivity-badge.offline span,
+.connectivity-badge.checking span{color:inherit!important}
+
+.session-timer.session-safe{
+  border-color:#146c43!important;
+  background:#198754!important;
+  color:#fff!important;
+}
+.session-timer.session-middle{
+  border-color:#b45309!important;
+  background:#f59e0b!important;
+  color:#17202a!important;
+}
+.session-timer.session-critical,
+.session-timer.session-expired{
+  border-color:#9f1d24!important;
+  background:#c62828!important;
+  color:#fff!important;
+}
+
+.page-login .login-controls-inline{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:stretch;
+  gap:.4rem;
+  margin:0 0 1rem!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scrollbar-gutter:stable;
+}
+.page-login .login-controls-inline>*{width:auto!important;flex:0 0 auto}
+.page-login .login-controls-inline .connectivity-badge{flex:1 1 10.5rem;min-width:10.5rem;white-space:nowrap}
+.page-login .login-controls-inline [data-ui-theme]{min-width:7.4rem}
+.page-login .login-controls-inline .compact-control{width:3.15rem!important;min-width:3.15rem!important;padding-inline:.45rem!important}
+
+.page-services .services-shell-wide{width:min(1440px,100%)}
+@media(min-width:1121px){
+  .page-services .services-header{grid-template-columns:minmax(150px,220px) minmax(600px,1fr) minmax(270px,300px)}
+  .page-services .services-slogan{white-space:nowrap;font-size:clamp(.84rem,1vw,1.05rem)}
+}
+@media(max-width:420px){
+  .page-login .login-controls-inline{margin-inline:-.2rem!important;padding-bottom:.2rem!important}
+  .page-login .login-controls-inline .connectivity-badge{min-width:9.5rem;font-size:.7rem}
+  .page-login .login-controls-inline [data-ui-theme]{min-width:6.8rem;font-size:.78rem}
+}
+
+/* Les règles de l’administration sont plus spécifiques ; ces états doivent rester prioritaires. */
+.page-admin .display-controls .connectivity-badge.online,
+.page-admin .admin-login-controls .connectivity-badge.online{
+  border-color:#146c43!important;
+  background:#198754!important;
+  color:#fff!important;
+}
+.page-admin .display-controls .connectivity-badge.offline,
+.page-admin .admin-login-controls .connectivity-badge.offline{
+  border-color:#9f1d24!important;
+  background:#c62828!important;
+  color:#fff!important;
+}
+.page-admin .display-controls .connectivity-badge.checking,
+.page-admin .admin-login-controls .connectivity-badge.checking{
+  border-color:#1643ba!important;
+  background:#1d4ed8!important;
+  color:#fff!important;
+}
+.page-admin .display-controls .session-timer.session-safe{
+  border-color:#146c43!important;
+  background:#198754!important;
+  color:#fff!important;
+}
+.page-admin .display-controls .session-timer.session-middle{
+  border-color:#b45309!important;
+  background:#f59e0b!important;
+  color:#17202a!important;
+}
+.page-admin .display-controls .session-timer.session-critical,
+.page-admin .display-controls .session-timer.session-expired{
+  border-color:#9f1d24!important;
+  background:#c62828!important;
+  color:#fff!important;
+}
+
+/* Harmonisation 1.1.13 : contraste sombre, progression des services et connexion administrateur. */
+html[data-theme="dark"]{
+  --common-control-bg:#26364a;
+  --common-control-hover:#30445c;
+  --common-control-border:#60738b;
+  --common-control-text:#f8fafc;
+}
+
+/* Les encarts rectangulaires de la liste des services restent lisibles en mode sombre. */
+html[data-theme="dark"] .page-services .service-frequency,
+html[data-theme="dark"] .page-services .service-progress{
+  border-color:#52657c!important;
+  background:#223044!important;
+  color:#f8fafc!important;
+}
+html[data-theme="dark"] .page-services .service-frequency,
+html[data-theme="dark"] .page-services .service-progress :where(.progress-label,.current-item,.supplier-progress,.supplier-progress-list,span,strong,p){
+  color:#f8fafc!important;
+}
+html[data-theme="dark"] .page-services .service-card > p,
+html[data-theme="dark"] .page-services .service-meta > span:not(.status){
+  color:#c6d2e1!important;
+}
+html[data-theme="dark"] .page-services .progress-meter,
+html[data-theme="dark"] .page-services .progress-meter::-webkit-progress-bar{
+  background:#465a72!important;
+}
+
+/* Les commandes secondaires claires disposent d’un vrai contraste sur tous les écrans sombres. */
+html[data-theme="dark"] :where(
+  .display-controls .icon-button,
+  .display-controls .portal-control,
+  .display-controls .button-secondary,
+  .display-controls .secondary-button,
+  .login-controls .icon-button,
+  .portal-nav a,
+  .button-secondary,
+  .secondary-button,
+  .button-ghost,
+  .admin-tab:not(.active),
+  .example-query,
+  .suggestion-button,
+  .marker-match-button,
+  .supplier-links a,
+  .out-link
+){
+  border-color:var(--common-control-border)!important;
+  background:var(--common-control-bg)!important;
+  color:var(--common-control-text)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)!important;
+}
+html[data-theme="dark"] :where(
+  .display-controls .icon-button,
+  .display-controls .portal-control,
+  .display-controls .button-secondary,
+  .display-controls .secondary-button,
+  .login-controls .icon-button,
+  .portal-nav a,
+  .button-secondary,
+  .secondary-button,
+  .button-ghost,
+  .admin-tab:not(.active),
+  .example-query,
+  .suggestion-button,
+  .marker-match-button,
+  .supplier-links a,
+  .out-link
+):hover{
+  border-color:#86a0bd!important;
+  background:var(--common-control-hover)!important;
+}
+html[data-theme="dark"] .button-label{color:#d2dbe7!important}
+html[data-theme="dark"] .page-bulletins #logoutButton{
+  border-color:var(--common-control-border)!important;
+  background:var(--common-control-bg)!important;
+  color:var(--common-control-text)!important;
+}
+
+/* Les couleurs d’état gardent la priorité sur le socle des commandes. */
+html[data-theme="dark"] .connectivity-badge.online{border-color:#2ea86b!important;background:#177245!important;color:#fff!important}
+html[data-theme="dark"] .connectivity-badge.offline{border-color:#ef746c!important;background:#a9251e!important;color:#fff!important}
+html[data-theme="dark"] .connectivity-badge.checking{border-color:#7ea5ff!important;background:#234fbd!important;color:#fff!important}
+html[data-theme="dark"] .session-timer.session-safe{border-color:#2ea86b!important;background:#177245!important;color:#fff!important}
+html[data-theme="dark"] .session-timer.session-middle{border-color:#f3b13f!important;background:#a96300!important;color:#fff!important}
+html[data-theme="dark"] .session-timer.session-critical,
+html[data-theme="dark"] .session-timer.session-expired{border-color:#ef746c!important;background:#a9251e!important;color:#fff!important}
+
+/* Connexion administrateur : aucune fausse durée de session et quatre commandes sur une ligne. */
+.page-admin .admin-login-controls-inline{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:stretch;
+  gap:.4rem;
+  margin:0 0 1rem!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scrollbar-gutter:stable;
+}
+.page-admin .admin-login-controls-inline>*{width:auto!important;flex:0 0 auto;margin:0!important}
+.page-admin .admin-login-controls-inline .connectivity-badge{flex:1 1 10.5rem;min-width:10.5rem;white-space:nowrap}
+.page-admin .admin-login-controls-inline [data-ui-theme]{min-width:7.4rem}
+.page-admin .admin-login-controls-inline .compact-control{width:3.15rem!important;min-width:3.15rem!important;padding-inline:.45rem!important}
+@media(max-width:420px){
+  .page-admin .admin-login-controls-inline{margin-inline:-.2rem!important;padding-bottom:.2rem!important}
+  .page-admin .admin-login-controls-inline .connectivity-badge{min-width:9.5rem;font-size:.7rem}
+  .page-admin .admin-login-controls-inline [data-ui-theme]{min-width:6.8rem;font-size:.78rem}
+}
+
+/* Priorité sur les anciennes règles claires spécifiques aux en-têtes et à l’administration. */
+html[data-theme="dark"] .display-controls .icon-button,
+html[data-theme="dark"] .display-controls .portal-control,
+html[data-theme="dark"] .display-controls .button-secondary,
+html[data-theme="dark"] .display-controls .secondary-button,
+html[data-theme="dark"] .login-controls .icon-button,
+html[data-theme="dark"] .page-admin .display-controls .icon-button,
+html[data-theme="dark"] .page-admin .display-controls .button-secondary,
+html[data-theme="dark"] .page-admin .admin-login-controls .icon-button{
+  border-color:var(--common-control-border)!important;
+  background:var(--common-control-bg)!important;
+  color:var(--common-control-text)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)!important;
+}
+
+/* Harmonisation 1.1.13 : logos d’en-tête, administration et contrôles. */
+@media (min-width: 761px) {
+  .app-header.panel,
+  .page-services .services-header {
+    grid-template-columns:minmax(230px,310px) minmax(0,1fr) minmax(270px,300px)!important;
+  }
+  .app-header .brand {
+    align-self:stretch!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:100%!important;
+  }
+  .app-header .brand img {
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+    object-fit:contain!important;
+  }
+  .page-services .services-header > img {
+    align-self:stretch!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+    object-fit:contain!important;
+  }
+}
+
+html[data-theme="light"] body.page-admin:has(#loginDialog[open]) {
+  background:#fff!important;
+}
+html[data-theme="light"] .page-admin #loginDialog::backdrop {
+  background:#fff!important;
+}
+
+.page-admin #configEditor .code-input {
+  overflow-y:scroll!important;
+  overflow-x:auto!important;
+  scrollbar-gutter:stable!important;
+}
+.page-admin #configEditor .code-editor-stage {
+  min-width:0!important;
+}
+.system-metrics-side {
+  display:grid;
+  justify-items:end;
+  gap:.55rem;
+  min-width:min(100%,34rem);
+}
+.metrics-refresh-control {
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  margin:0!important;
+  font-size:.82rem;
+  font-weight:800;
+  color:var(--text);
+}
+.metrics-refresh-control select {
+  width:auto;
+  min-width:9rem;
+  min-height:2.35rem;
+  padding:.35rem .55rem;
+}
+.system-metrics-legend {
+  max-height:7.5rem;
+  overflow:auto;
+  padding-right:.25rem;
+}
+@media (max-width: 760px) {
+  .system-metrics-side {justify-items:start;min-width:0;width:100%}
+  .metrics-refresh-control {width:100%;justify-content:space-between}
+  .metrics-refresh-control select {min-width:8.5rem}
+}
+
+.metric-cpu-color-0 {background:#0072b2!important}
+.metric-cpu-color-1 {background:#009e73!important}
+.metric-cpu-color-2 {background:#cc79a7!important}
+.metric-cpu-color-3 {background:#e69f00!important}
+.metric-cpu-color-4 {background:#56b4e9!important}
+.metric-cpu-color-5 {background:#d55e00!important}
+.metric-cpu-color-6 {background:#332288!important}
+.metric-cpu-color-7 {background:#88ccee!important}
+
+
+/* Ajustements ciblés 1.1.14 : navigation de service, connexion admin et ascenseurs. */
+body:is(.page-bulletins,.page-pieces,.page-couples) .portal-nav.panel a{
+  border-color:#174ea6!important;
+  background:#174ea6!important;
+  color:#fff!important;
+  font-weight:800;
+}
+body:is(.page-bulletins,.page-pieces,.page-couples) .portal-nav.panel a:hover,
+body:is(.page-bulletins,.page-pieces,.page-couples) .portal-nav.panel a:focus-visible{
+  border-color:#0f3d85!important;
+  background:#0f3d85!important;
+}
+.page-admin #loginDialog .dialog-card h1{
+  margin:.2rem 0 .75rem;
+  text-align:center;
+  font-size:clamp(1.7rem,4vw,2.35rem);
+  line-height:1.15;
+}
+.page-admin .code-editor .code-editor-grid{
+  grid-template-rows:minmax(0,1fr)!important;
+}
+.page-admin .code-editor .code-editor-stage{
+  min-height:0!important;
+  overflow:hidden!important;
+}
+.page-admin .code-editor .code-input{
+  z-index:5!important;
+  overflow-x:auto!important;
+  overflow-y:scroll!important;
+  scrollbar-gutter:stable both-edges!important;
+  scrollbar-width:auto;
+  scrollbar-color:#64748b #111827;
+  pointer-events:auto;
+  touch-action:pan-x pan-y;
+}
+.page-admin .code-editor .code-input::-webkit-scrollbar{width:14px;height:14px}
+.page-admin .code-editor .code-input::-webkit-scrollbar-track{background:#111827;border-left:1px solid #334155}
+.page-admin .code-editor .code-input::-webkit-scrollbar-thumb{min-height:36px;border:3px solid #111827;border-radius:999px;background:#64748b}
+.page-admin .code-editor .code-input::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+
+.page-admin .jobs-table tbody tr{transition:background .15s ease}
+.page-admin .jobs-table .job-row-pending{background:color-mix(in srgb,#64748b 8%,var(--card-solid))}
+.page-admin .jobs-table .job-row-running{background:color-mix(in srgb,#2563eb 10%,var(--card-solid))}
+.page-admin .jobs-table .job-row-success{background:color-mix(in srgb,#16a34a 10%,var(--card-solid))}
+.page-admin .jobs-table .job-row-error{background:color-mix(in srgb,#dc2626 10%,var(--card-solid))}
+.page-admin .job-state-badge,.page-admin .job-progress-badge{display:inline-flex;align-items:center;justify-content:center;min-width:5.5rem;padding:.3rem .58rem;border-radius:999px;font-size:.8rem;font-weight:850;white-space:nowrap}
+.page-admin .job-state-pending{background:#e2e8f0;color:#334155}
+.page-admin .job-state-running{background:#dbeafe;color:#1d4ed8}
+.page-admin .job-state-success{background:#dcfce7;color:#166534}
+.page-admin .job-state-error{background:#fee2e2;color:#991b1b}
+.page-admin .job-progress-badge{min-width:4.3rem;background:#ede9fe;color:#6d28d9}
+html[data-theme="dark"] .page-admin .job-state-pending{background:#334155;color:#f1f5f9}
+html[data-theme="dark"] .page-admin .job-state-running{background:#1e3a8a;color:#dbeafe}
+html[data-theme="dark"] .page-admin .job-state-success{background:#14532d;color:#dcfce7}
+html[data-theme="dark"] .page-admin .job-state-error{background:#7f1d1d;color:#fee2e2}
+html[data-theme="dark"] .page-admin .job-progress-badge{background:#4c1d95;color:#ede9fe}
+
+.page-admin .status-card{position:relative;overflow:hidden;border-left:6px solid var(--metric-accent);background:color-mix(in srgb,var(--metric-accent) 8%,var(--card-solid))}
+.page-admin .status-card h3{display:inline-flex;margin:0 0 .7rem;padding:.27rem .58rem;border-radius:999px;background:var(--metric-accent);color:#fff;font-size:.82rem;line-height:1.2}
+.page-admin .status-card-blue{--metric-accent:#2563eb}
+.page-admin .status-card-green{--metric-accent:#15803d}
+.page-admin .status-card-orange{--metric-accent:#c2410c}
+.page-admin .status-card-purple{--metric-accent:#7e22ce}
+.page-admin .status-card-teal{--metric-accent:#0f766e}
+.page-admin .status-card-rose{--metric-accent:#be123c}
+
+/* Correctifs 1.1.17 : logo transparent, connexions homogènes et métriques administrateur. */
+.brand img,
+.brand-logo,
+.page-services .services-header > img,
+.page-pieces .brand img,
+.page-couples .brand img,
+.page-bulletins .brand img,
+.page-admin .brand img {
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+
+/* Les deux formulaires de connexion partagent exactement le même gabarit. */
+.page-login .card,
+.page-admin #loginDialog {
+  width:min(100%,34rem)!important;
+  max-width:34rem!important;
+  border:1px solid var(--border)!important;
+  border-radius:1rem!important;
+  background:var(--panel,var(--card-solid,#fff))!important;
+  box-shadow:var(--shadow)!important;
+}
+.page-admin #loginDialog {
+  padding:0!important;
+  overflow:visible!important;
+}
+.page-admin #loginDialog .dialog-card {
+  padding:2rem!important;
+  border-radius:1rem!important;
+  background:var(--panel,var(--card-solid,#fff))!important;
+  color:var(--text)!important;
+}
+.page-admin #loginDialog .dialog-card h1,
+.page-login .card h1 {
+  margin:.2rem 0 .75rem!important;
+  text-align:center!important;
+  font-size:clamp(1.7rem,4vw,2.35rem)!important;
+  line-height:1.15!important;
+  letter-spacing:normal!important;
+}
+.page-admin #loginDialog .login-subtitle,
+.page-login .login-subtitle {
+  margin:.1rem 0 .75rem!important;
+  text-align:center!important;
+}
+.page-admin #loginDialog .dialog-card p,
+.page-login .card p {
+  text-align:left!important;
+  text-justify:auto!important;
+  line-height:1.6!important;
+  color:var(--muted)!important;
+}
+.page-admin #loginDialog .dialog-card label,
+.page-login .card label {
+  display:block!important;
+  margin:1rem 0 .4rem!important;
+  font-weight:700!important;
+}
+.page-admin #loginDialog .dialog-card input,
+.page-login .card input {
+  width:100%!important;
+  padding:.8rem .9rem!important;
+  border:1px solid var(--border)!important;
+  border-radius:.65rem!important;
+  background:#fff!important;
+  color:#17202a!important;
+}
+.page-admin #loginDialog .primary,
+.page-login .primary {
+  width:100%!important;
+  min-height:auto!important;
+  margin-top:1.1rem!important;
+  padding:.8rem 1rem!important;
+  border:0!important;
+  border-radius:.65rem!important;
+  background:#1d4ed8!important;
+  color:#fff!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+}
+.page-admin #loginDialog .primary:hover,
+.page-login .primary:hover {
+  background:#1e40af!important;
+}
+.page-admin #loginDialog .security-note,
+.page-login .security-note {
+  margin-top:.75rem!important;
+  font-size:.88rem!important;
+}
+
+/* Aucun ascenseur autour des quatre commandes de connexion ; les libellés se contractent proprement. */
+.page-login .login-controls-inline,
+.page-admin .admin-login-controls-inline {
+  overflow:visible!important;
+  scrollbar-width:none!important;
+  scrollbar-gutter:auto!important;
+}
+.page-login .login-controls-inline::-webkit-scrollbar,
+.page-admin .admin-login-controls-inline::-webkit-scrollbar {
+  display:none!important;
+}
+.page-login .login-controls-inline > *,
+.page-admin .admin-login-controls-inline > * {
+  min-width:0!important;
+}
+.page-login .login-controls-inline .connectivity-badge,
+.page-admin .admin-login-controls-inline .connectivity-badge {
+  flex:1.25 1 9rem!important;
+  min-width:0!important;
+}
+.page-login .login-controls-inline [data-ui-theme],
+.page-admin .admin-login-controls-inline [data-ui-theme] {
+  flex:1 1 7rem!important;
+  min-width:0!important;
+}
+.page-login .login-controls-inline .compact-control,
+.page-admin .admin-login-controls-inline .compact-control {
+  flex:0 0 3.15rem!important;
+  width:3.15rem!important;
+  min-width:3.15rem!important;
+}
+@media(max-width:760px){
+  .page-admin #loginDialog .dialog-card{padding:1.3rem!important}
+}
+@media(max-width:390px){
+  .page-login .login-controls-inline,
+  .page-admin .admin-login-controls-inline{gap:.3rem!important}
+  .page-login .login-controls-inline .connectivity-badge,
+  .page-admin .admin-login-controls-inline .connectivity-badge{font-size:.66rem!important}
+  .page-login .login-controls-inline [data-ui-theme],
+  .page-admin .admin-login-controls-inline [data-ui-theme]{font-size:.72rem!important;padding-inline:.35rem!important}
+}
+
+/* État général uniforme ; statistiques sémantiques avec pourcentage quand pertinent. */
+.page-admin #generalStatus .status-card {
+  --metric-accent:#2563eb!important;
+}
+.page-admin .status-card-neutral{--metric-accent:#111827}
+.page-admin .status-card-red{--metric-accent:#b91c1c}
+.page-admin .status-value-line{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:.75rem;
+  min-width:0;
+}
+.page-admin .status-value-line strong{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.page-admin .metric-percent{
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  justify-content:center;
+  padding:.2rem .48rem;
+  border:1px solid color-mix(in srgb,var(--metric-accent) 42%,transparent);
+  border-radius:999px;
+  background:color-mix(in srgb,var(--metric-accent) 14%,var(--card-solid));
+  color:var(--metric-accent);
+  font-size:.76rem;
+  font-weight:900;
+  white-space:nowrap;
+}
+html[data-theme="dark"] .page-admin .status-card-neutral{--metric-accent:#111827}
+html[data-theme="dark"] .page-admin .metric-percent{color:#fff}
