@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr" data-theme="light" data-font="normal">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recherche bulletins - Portail Entraide Opel GT</title>
+  <link rel="stylesheet" href="/static/bulletins/styles.css?v=1.1.23" />
+  <link rel="stylesheet" href="/static/common/responsive.css?v=1.1.23">
+</head>
+<body class="page-bulletins">
+
+
+  <dialog id="pdfDialog" class="pdf-dialog" aria-labelledby="pdfTitle">
+    <div class="pdf-dialog-card">
+      <div class="pdf-toolbar">
+        <div>
+          <h2 id="pdfTitle" data-i18n="pdfTitle">Consultation du PDF local</h2>
+          <p id="pdfSubtitle" class="muted"></p>
+        </div>
+        <div class="toolbar-actions">
+          <a id="pdfOpenNewTab" class="button-like button-secondary" href="#" target="_blank" rel="noopener noreferrer" data-i18n="newTab">Nouvel onglet</a>
+          <button id="pdfCloseButton" type="button" class="button-secondary" data-i18n="close">Fermer</button>
+        </div>
+      </div>
+      <iframe id="pdfFrame" title="PDF local" loading="lazy"></iframe>
+    </div>
+  </dialog>
+
+  <header id="header" class="hidden panel app-header">
+    <a class="brand" href="https://www.entraideopelgt.fr/" target="_blank" rel="noopener noreferrer" aria-label="Site de l'Entraide Opel GT">
+      <img src="/static/common/logo.png" alt="Logo Entraide Opel GT" />
+    </a>
+    <div class="header-copy">
+      <p class="eyebrow">Opel GT 1968-1973 : « Seul le vol procure plus de sensations ».</p>
+      <h1 class="bulletins-header-title" data-i18n="mainTitle">Recherches dans les bulletins</h1>
+      <p data-i18n="headerTagline">Recherche locale dans les bulletins PDF de l’Entraide Opel GT.</p>
+    </div>
+    <div class="display-controls" aria-label="Réglages d'affichage">
+      <div class="control-row control-row-connectivity">
+        <span id="connectivityBadge" class="connectivity-badge checking" role="status" aria-live="polite">
+          <span aria-hidden="true">●</span> Connexion Internet en cours de vérification
+        </span>
+      </div>
+      <div class="control-row">
+        <span id="sessionRemaining" class="session-timer" role="status" aria-live="polite">Temps restant avant déconnexion : --:--</span>
+      </div>
+      <div class="control-row control-row-theme">
+        <button id="themeToggle" type="button" class="icon-button" aria-pressed="false" aria-label="Basculer le mode clair ou sombre" title="Mode clair/sombre">🌙 Mode sombre</button>
+      </div>
+      <div class="control-row control-row-fonts">
+        <button id="fontDecrease" type="button" class="icon-button compact-control" title="Diminuer la taille du texte" data-i18n-title="fontDecreaseTitle">A−</button>
+        <button id="fontIncrease" type="button" class="icon-button compact-control" title="Augmenter la taille du texte" data-i18n-title="fontIncreaseTitle">A+</button>
+        <button id="logoutButton" type="button" class="button-secondary compact-control" data-i18n="logout">Se déconnecter</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="portal-nav panel" aria-label="Services du portail"><a href="/services">Retour à la liste des services</a><a href="/admin">Accès à la page d’administration</a></nav>
+  <main id="app" class="hidden">
+    <section class="panel search-panel">
+      <h2 data-i18n="searchTitle">Recherche avancée (sans IA)</h2>
+      <div class="bulletin-rules" aria-label="Fonctionnement de la récupération des bulletins">
+        <p id="lastSyncInfo" class="sync-info-line">Dernière synchronisation : inconnue</p>
+        <ul class="sync-rules">
+          <li>La récupération est déclenchée automatiquement dès l’arrivée sur la page de choix des services.</li>
+          <li>Aucun identifiant, mot de passe ou cookie du site membre n’est écrit sur disque.</li>
+          <li>Seuls les bulletins nouveaux ou plus récents que le cache local sont téléchargés.</li>
+          <li>La récupération et l’OCR continuent côté serveur même si le navigateur est fermé.</li>
+        </ul>
+      </div>
+      <div id="readinessMessage" class="message info hidden" role="status"></div>
+      <div id="syncProgressPanel" class="sync-progress-panel hidden" aria-live="polite">
+        <div class="progress-row">
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          <strong id="progressText">0%</strong>
+        </div>
+        <p id="etaText" class="muted"></p>
+        <p id="currentFileText" class="current-index-file"></p>
+        <div id="syncCounters" class="sync-counters"></div>
+      </div>
+      <form id="searchForm" class="search-grid" novalidate>
+        <div class="span-2">
+          <label for="keywords" data-i18n="keywordsLabel">Mots clés</label>
+          <input id="keywords" name="keywords" type="search" placeholder="Ex. carburateur, joint de pare-brise, frein* OR embrayage*" data-i18n-placeholder="keywordsPlaceholder" autocomplete="off" required />
+        </div>
+
+        <div>
+          <label for="mode" data-i18n="modeLabel">Mode</label>
+          <select id="mode" name="mode">
+            <option value="all" data-i18n="modeAll">Tous les mots</option>
+            <option value="any" data-i18n="modeAny">Au moins un mot</option>
+            <option value="phrase" data-i18n="modePhrase">Expression exacte</option>
+            <option value="raw" data-i18n="modeRaw">Requête avancée FTS5</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="limit" data-i18n="limitLabel">Résultats</label>
+          <select id="limit" name="limit">
+            <option value="25">25</option>
+            <option value="50" selected>50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="yearFrom" data-i18n="yearFromLabel">Année min.</label>
+          <input id="yearFrom" name="yearFrom" type="number" min="1990" max="2100" placeholder="1994" />
+        </div>
+
+        <div>
+          <label for="yearTo" data-i18n="yearToLabel">Année max.</label>
+          <input id="yearTo" name="yearTo" type="number" min="1990" max="2100" placeholder="2025" />
+        </div>
+
+        <div>
+          <label for="bulletinFrom" data-i18n="bulletinFromLabel">Bulletin min.</label>
+          <input id="bulletinFrom" name="bulletinFrom" type="number" min="1" placeholder="1" />
+        </div>
+
+        <div>
+          <label for="bulletinTo" data-i18n="bulletinToLabel">Bulletin max.</label>
+          <input id="bulletinTo" name="bulletinTo" type="number" min="1" placeholder="99" />
+        </div>
+
+        <div class="span-2 actions">
+          <button id="searchButton" type="submit" data-i18n="searchButton">Rechercher</button>
+          <button id="clearButton" type="button" class="button-secondary" data-i18n="clearButton">Effacer</button>
+        </div>
+      </form>
+      <div id="searchMessage" class="message hidden" role="alert"></div>
+      <details class="help-block">
+        <summary data-i18n="helpSummary">Exemples de requêtes avancées</summary>
+        <div id="advancedHelp" class="advanced-help"></div>
+      </details>
+    </section>
+
+    <section id="resultsPanel" class="panel hidden">
+      <h2 data-i18n="resultsTitle">Résultats</h2>
+      <p id="resultsCount" class="muted"></p>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section id="bulletinsPanel" class="panel hidden">
+      <div class="panel-header">
+        <div>
+          <h2 data-i18n="bulletinsTitle">Liste des bulletins</h2>
+          <p id="bulletinsStatus" class="muted" data-i18n="noBulletinsYet">Aucun bulletin chargé pour le moment.</p>
+        </div>
+        <div id="stats" class="stats"></div>
+      </div>
+      <div class="table-wrap" role="region" tabindex="0" aria-label="Liste des bulletins, défilement horizontal sur écran étroit">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="tableNo">N°</th>
+              <th data-i18n="tableTitle">Titre</th>
+              <th data-i18n="tableYear">Année</th>
+              <th data-i18n="tablePages">Pages</th>
+              <th data-i18n="tableStatus">État</th>
+              <th data-i18n="tablePdf">PDF local</th>
+            </tr>
+          </thead>
+          <tbody id="bulletinsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="panel app-footer">
+      <div class="footer-badges" aria-label="Technologies utilisées">
+        <div class="footer-badge-line">
+          <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
+          <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white">
+          <img alt="SQLite" src="https://img.shields.io/badge/SQLite-FTS5-003B57?logo=sqlite&logoColor=white">
+          <img alt="Tesseract" src="https://img.shields.io/badge/Tesseract-OCR-5A7D3A">
+          <img alt="PyMuPDF" src="https://img.shields.io/badge/PyMuPDF-PDF-F59E0B">
+        </div>
+        <div class="footer-badge-line">
+          <img alt="OpenCV" src="https://img.shields.io/badge/OpenCV-pr%C3%A9traitement-5C3EE8?logo=opencv&logoColor=white">
+          <img alt="HTML5" src="https://img.shields.io/badge/HTML5-interface-E34F26?logo=html5&logoColor=white">
+          <img alt="CSS3" src="https://img.shields.io/badge/CSS3-responsive-1572B6?logo=css3&logoColor=white">
+          <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?logo=javascript&logoColor=111">
+          <img alt="systemd" src="https://img.shields.io/badge/systemd-service_Linux-5C5C5C?logo=linux&logoColor=white">
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footerAuthor">Auteur : Nicolas Lermé - Copyright 2026</p>
+        <p class="made-with-love" data-i18n="footerLove">Fais avec amour ❤️</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/static/common/portal_ui.js?v=1.1.23"></script>
+  <script src="/static/common/session_timer.js?v=1.1.23"></script>
+  <script src="/static/bulletins/app.js?v=1.1.23"></script>
+</body>
+</html>

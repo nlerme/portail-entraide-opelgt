@@ -1,0 +1,12 @@
+[Unit]
+Description=Portail Entraide Opel GT - petites annonces chaque jour à 02h00
+
+[Timer]
+OnCalendar=*-*-* 02:00:00 Europe/Paris
+Persistent=true
+AccuracySec=1s
+RandomizedDelaySec=0
+Unit=portail-entraide-opel-gt-annonces-update.service
+
+[Install]
+WantedBy=timers.target
