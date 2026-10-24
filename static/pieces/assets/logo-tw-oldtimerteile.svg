@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="title desc">
-  <title id="title">TW-Oldtimerteile</title>
-  <desc id="desc">Monogramme TW et nom du fournisseur</desc>
-  <rect width="640" height="160" rx="18" fill="#ffffff"/>
-  <rect x="10" y="10" width="140" height="140" rx="18" fill="#1b4f8a"/>
-  <text x="80" y="104" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800" fill="#ffffff">TW</text>
-  <text x="178" y="82" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="800" fill="#1b4f8a">Oldtimerteile</text>
-  <text x="180" y="119" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="600" fill="#4b5563">Pièces détachées Opel</text>
-</svg>
