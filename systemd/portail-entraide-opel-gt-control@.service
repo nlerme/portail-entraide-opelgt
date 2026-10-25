@@ -1,0 +1,19 @@
+[Unit]
+Description=Portail Entraide Opel GT - commande privilégiée
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+WorkingDirectory=/opt/portail-entraide-opel-gt
+Environment=PORTAIL_CONFIG=/etc/portail-entraide-opel-gt/config.json
+Environment=PORTAIL_SECRETS=/etc/portail-entraide-opel-gt/secrets.json
+ExecStart=/opt/portail-entraide-opel-gt/venv-web/bin/python /opt/portail-entraide-opel-gt/server_control.py
+StandardInput=socket
+StandardOutput=socket
+StandardError=journal
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/etc/portail-entraide-opel-gt /run/portail-entraide-opel-gt
