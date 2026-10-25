@@ -1,0 +1,11 @@
+[Unit]
+Description=Portail Entraide Opel GT - surveillance périodique indépendante
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=60s
+AccuracySec=5s
+Unit=portail-entraide-opel-gt-notifications.service
+
+[Install]
+WantedBy=timers.target
