@@ -1,3 +1,0 @@
-PyMuPDF 1.26.7
-Dual Licensed - GNU AFFERO GPL 3.0 or Artifex Commercial License
-https://pymupdf.readthedocs.io/en/latest/about.html

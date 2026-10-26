@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="96" viewBox="0 0 320 96" role="img" aria-labelledby="title">
-  <title id="title">Logo GT Teile</title>
-  <rect width="320" height="96" rx="14" fill="#fff0dc"/>
-  <rect x="8" y="8" width="80" height="80" rx="12" fill="#c35b00"/>
-  <text x="48" y="59" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" fill="white">PG</text>
-  <text x="104" y="54" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#c35b00">GT Teile</text>
-  <path d="M104 65 H292" stroke="#c35b00" stroke-width="4" stroke-linecap="round" opacity=".45"/>
-</svg>
