@@ -1,0 +1,16 @@
+[Unit]
+Description=Portail Entraide Opel GT - mise à jour hebdomadaire des paquets système
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+WorkingDirectory=/opt/portail-entraide-opel-gt
+Environment=PORTAIL_CONFIG=/etc/portail-entraide-opel-gt/config.json
+Environment=PORTAIL_SECRETS=/etc/portail-entraide-opel-gt/secrets.json
+ExecStart=/opt/portail-entraide-opel-gt/run_server.sh system-update-execute
+TimeoutStartSec=6h
+Nice=10
+IOSchedulingClass=idle
