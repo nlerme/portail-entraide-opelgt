@@ -1,0 +1,16 @@
+[Unit]
+Description=Portail Entraide Opel GT - nettoyage périodique
+
+[Service]
+Type=oneshot
+User=opelgt
+Group=opelgt
+WorkingDirectory=/opt/portail-entraide-opel-gt
+Environment=PORTAIL_CONFIG=/etc/portail-entraide-opel-gt/config.json
+Environment=PORTAIL_SECRETS=/etc/portail-entraide-opel-gt/secrets.json
+ExecStart=/opt/portail-entraide-opel-gt/venv-web/bin/python -m app.manage cleanup
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/portail-entraide-opel-gt

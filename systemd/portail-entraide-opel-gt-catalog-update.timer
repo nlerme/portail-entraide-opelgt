@@ -1,0 +1,11 @@
+[Unit]
+Description=Portail Entraide Opel GT - mise à jour des catalogues trois fois par semaine
+
+[Timer]
+OnCalendar=Mon,Wed,Fri *-*-* 02:00:00 Europe/Paris
+Persistent=false
+AccuracySec=1s
+Unit=portail-entraide-opel-gt-catalog-update.service
+
+[Install]
+WantedBy=timers.target
