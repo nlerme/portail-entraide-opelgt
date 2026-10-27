@@ -1,0 +1,9 @@
+[Unit]
+Description=Portail Entraide Opel GT - surveillance de Cloudflare Tunnel
+After=network-online.target portail-entraide-opel-gt-web.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/portail-entraide-opel-gt/run_server.sh cloudflare-health
+TimeoutStartSec=150s
+UMask=0077

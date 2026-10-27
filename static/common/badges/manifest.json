@@ -1,0 +1,328 @@
+{
+  "generated": true,
+  "inventory": "README.md",
+  "badges": [
+    {
+      "label": "Python 3.11+",
+      "file": "python-3-11.svg",
+      "width": 93,
+      "height": 20,
+      "sha256": "9b8c1be59c6a37e26ac785012bfbc92a982e1e808958814b7182f39461bb26df"
+    },
+    {
+      "label": "JavaScript",
+      "file": "javascript.svg",
+      "width": 73,
+      "height": 20,
+      "sha256": "a25bbe81b5435f03957bbafb5c1a4446b9f1795cf74df4c56562652ede140b79"
+    },
+    {
+      "label": "HTML5",
+      "file": "html5.svg",
+      "width": 56,
+      "height": 20,
+      "sha256": "2b69bc2ada2afcf19c2c2cbdc9f4542bdf692b1021663f739ec3cc85fce674a5"
+    },
+    {
+      "label": "CSS",
+      "file": "css.svg",
+      "width": 40,
+      "height": 20,
+      "sha256": "deaaa0646c8125d3f5e3a80691ed7fcd8d406eb9724abf16131f736e10d0084a"
+    },
+    {
+      "label": "Bash",
+      "file": "bash.svg",
+      "width": 45,
+      "height": 20,
+      "sha256": "ada35c61e94c841a5852051143a0d0f99d986b4482ec4a1cc6c8b33894bfa141"
+    },
+    {
+      "label": "SQL",
+      "file": "sql.svg",
+      "width": 40,
+      "height": 20,
+      "sha256": "1cea5685fe0a674c2bf12df11f6f4223ef305933f30e9a70e175c3ae49b974b4"
+    },
+    {
+      "label": "JSON",
+      "file": "json.svg",
+      "width": 45,
+      "height": 20,
+      "sha256": "575190212c56fe13ebb45fa8fdaf6d85b9ff13daaa28e32785068c942705a9ab"
+    },
+    {
+      "label": "YAML",
+      "file": "yaml.svg",
+      "width": 47,
+      "height": 20,
+      "sha256": "9d94ab1d27dd68eb506798955f6df1b33b8a5f9396c6df8220c15fbf7403fd7e"
+    },
+    {
+      "label": "FastAPI",
+      "file": "fastapi.svg",
+      "width": 58,
+      "height": 20,
+      "sha256": "53f3f0c828e1186fc35fd59ecb6efb9749539a69a2ee0f8ff6490f89cf15a668"
+    },
+    {
+      "label": "Starlette",
+      "file": "starlette.svg",
+      "width": 66,
+      "height": 20,
+      "sha256": "34abf4981fd25716b6a49337431f6b3d0ef648ded184c4bbc094160602387633"
+    },
+    {
+      "label": "Uvicorn",
+      "file": "uvicorn.svg",
+      "width": 60,
+      "height": 20,
+      "sha256": "078fdf18f3b5f9e7691b4f19d14e80c6b2d25a4697bc7bd79b9f4b376d36c3dc"
+    },
+    {
+      "label": "Pydantic",
+      "file": "pydantic.svg",
+      "width": 65,
+      "height": 20,
+      "sha256": "fc805ef55c6674b3d44d3e9cb1a4bed9418b634ddc8a63c4a54e733b0f3e9be2"
+    },
+    {
+      "label": "HTTPX",
+      "file": "httpx.svg",
+      "width": 54,
+      "height": 20,
+      "sha256": "22dce9e7abc4551bfc235a314514483654c716ffb0574119a39f2895cb6be81f"
+    },
+    {
+      "label": "Requests",
+      "file": "requests.svg",
+      "width": 68,
+      "height": 20,
+      "sha256": "d56f1e22be9e8f03c58c8c05bdc83f02b5def99b9d36765152279911ba688532"
+    },
+    {
+      "label": "urllib3",
+      "file": "urllib3.svg",
+      "width": 53,
+      "height": 20,
+      "sha256": "2de4a680529ed5a14a5d64fe5258c4e44b3420512af0d2a04c25f868150b57a9"
+    },
+    {
+      "label": "Beautiful Soup 4",
+      "file": "beautiful-soup-4.svg",
+      "width": 109,
+      "height": 20,
+      "sha256": "3854f88515218dc23cd911801ebfc908264a2991494bb6e599332ef8ec274378"
+    },
+    {
+      "label": "lbc",
+      "file": "lbc.svg",
+      "width": 34,
+      "height": 20,
+      "sha256": "12d3e926ce580e3f52740d3bee908181d9df3bbe9b123af8ecfcf7a940ebde7f"
+    },
+    {
+      "label": "curl-cffi",
+      "file": "curl-cffi.svg",
+      "width": 59,
+      "height": 20,
+      "sha256": "9d4dcbfdf041b4033fecbd20ae1791027a983eb8ddf7f90fde29f6beff234b1c"
+    },
+    {
+      "label": "Argon2-cffi",
+      "file": "argon2-cffi.svg",
+      "width": 78,
+      "height": 20,
+      "sha256": "7789579ef4803a55c445ca81ddc2d65b04d088376319ee18d1d0ea77fdc73b2f"
+    },
+    {
+      "label": "Leaflet",
+      "file": "leaflet.svg",
+      "width": 87,
+      "height": 20,
+      "sha256": "4a60112be48255f98b82aa95b7a58a9bb197d2606904107f116ae8d7b4898a5c"
+    },
+    {
+      "label": "OpenStreetMap",
+      "file": "openstreetmap.svg",
+      "width": 104,
+      "height": 20,
+      "sha256": "ae65680f0ef6abdd329b43c9c9cff8f19522cd61e19f88f34fbd3d6dd1740b90"
+    },
+    {
+      "label": "SQLite FTS5",
+      "file": "sqlite-fts5.svg",
+      "width": 84,
+      "height": 20,
+      "sha256": "7ae0e7de3005780ab9ad2114bc9ba6ab0a9dc8334f249ce4cc5ba5147b0c95d5"
+    },
+    {
+      "label": "Tesseract OCR",
+      "file": "tesseract-ocr.svg",
+      "width": 97,
+      "height": 20,
+      "sha256": "bb8bcfa5c42c30b09e26c858b99ec76c7823525499138a0b41fe12351363b64c"
+    },
+    {
+      "label": "pytesseract",
+      "file": "pytesseract.svg",
+      "width": 82,
+      "height": 20,
+      "sha256": "197ba202498afd06ab5f2e71e3d8391bcfeafeffd275f2c7cb9d52a794d15ab9"
+    },
+    {
+      "label": "PyMuPDF",
+      "file": "pymupdf.svg",
+      "width": 69,
+      "height": 20,
+      "sha256": "96e871729718925e09100c9b21bec242f58b6278a64b2a1b94077d1929939de7"
+    },
+    {
+      "label": "PDF.js",
+      "file": "pdf-js.svg",
+      "width": 95,
+      "height": 20,
+      "sha256": "b24179700903fa0082b150e813e7dc221954fbc5605d82e4931c7ce06f5d7dfd"
+    },
+    {
+      "label": "OpenCV",
+      "file": "opencv.svg",
+      "width": 63,
+      "height": 20,
+      "sha256": "1a0b53b27954216c1fbcb0e44080e6dab5c02cb44738881ed9e02abc6ad69d7c"
+    },
+    {
+      "label": "NumPy",
+      "file": "numpy.svg",
+      "width": 57,
+      "height": 20,
+      "sha256": "de38215efca9309c4bebcc39f369a03bb7bc9d32e5a59d41a8e68e309a2dae53"
+    },
+    {
+      "label": "Pillow",
+      "file": "pillow.svg",
+      "width": 49,
+      "height": 20,
+      "sha256": "b8264cc9ba74663b26e54596223db871c045114043521ad7b52ea58ab8811eae"
+    },
+    {
+      "label": "Linux",
+      "file": "linux.svg",
+      "width": 48,
+      "height": 20,
+      "sha256": "28cedcf6ae5c407bc652c755e270c4b63d378bb428906fc1733b723a2e7e34d2"
+    },
+    {
+      "label": "Debian",
+      "file": "debian.svg",
+      "width": 57,
+      "height": 20,
+      "sha256": "a88942301a56102edb429491b42fbd9a235bed4ba8bc80e088946c0609303ea0"
+    },
+    {
+      "label": "Ubuntu",
+      "file": "ubuntu.svg",
+      "width": 58,
+      "height": 20,
+      "sha256": "9f040418a00dd3ecb6599f7bf470593a501096e79c6daf86955d1a426ac8475f"
+    },
+    {
+      "label": "Raspberry Pi OS",
+      "file": "raspberry-pi-os.svg",
+      "width": 106,
+      "height": 20,
+      "sha256": "efde9130b0b0649cecab757f87b56debaf2ae1c77f09c4beadfc262516efa624"
+    },
+    {
+      "label": "systemd",
+      "file": "systemd.svg",
+      "width": 65,
+      "height": 20,
+      "sha256": "80631f02172430783e801e4d9f68e07588a57d6dfe03d89a396b248c6f4cae22"
+    },
+    {
+      "label": "Cloudflare Tunnel",
+      "file": "cloudflare-tunnel.svg",
+      "width": 113,
+      "height": 20,
+      "sha256": "aa36f6c5140ecd99a5a6ed3e5d5235a06a31c1e9f0eee115bb169c533272ffc7"
+    },
+    {
+      "label": "ntfy",
+      "file": "ntfy.svg",
+      "width": 39,
+      "height": 20,
+      "sha256": "ecf15b05dff5be53051499ba324117e027380d73bb6d562c83897842b64484f9"
+    },
+    {
+      "label": "pip",
+      "file": "pip.svg",
+      "width": 35,
+      "height": 20,
+      "sha256": "d5b7bf33be8af0814ef2983fa15dec570e9255ac5fe8a985af4fa56d48c0fa53"
+    },
+    {
+      "label": "venv",
+      "file": "venv.svg",
+      "width": 45,
+      "height": 20,
+      "sha256": "29da524bcb9dc4fcca5c8817e26fedc2ae27141742c2092270c8b1a6e3db7d44"
+    },
+    {
+      "label": "Git",
+      "file": "git.svg",
+      "width": 34,
+      "height": 20,
+      "sha256": "e966ecacb1d84023f0ad9d8ce2ea3d373ffa9ff22643a3a1a0353129ef280a17"
+    },
+    {
+      "label": "GitHub Actions",
+      "file": "github-actions.svg",
+      "width": 100,
+      "height": 20,
+      "sha256": "30684a3991821d5109c7934ceff1ab069e44b2dbfff47cf91a7a58ec3043f629"
+    },
+    {
+      "label": "Dependabot",
+      "file": "dependabot.svg",
+      "width": 86,
+      "height": 20,
+      "sha256": "cd3ecaea2e52bd2780092480a5b5c399836bed4fd64bc80497013ba3ff649d33"
+    },
+    {
+      "label": "Node.js",
+      "file": "node-js.svg",
+      "width": 59,
+      "height": 20,
+      "sha256": "3604fc2b1f4c759bbc9ca405f44cdd1205cce5f00c8da5ff0c9931d1cfb3e6d4"
+    },
+    {
+      "label": "pytest",
+      "file": "pytest.svg",
+      "width": 53,
+      "height": 20,
+      "sha256": "0ce6ad16a839eb3f8ffac6a86fbc8d5657377e1b8fb01481920de8ba62bf818b"
+    },
+    {
+      "label": "pytest-asyncio",
+      "file": "pytest-asyncio.svg",
+      "width": 98,
+      "height": 20,
+      "sha256": "83d776d84c94b578f34ec085437214aeee4fccd77942e492525259745829c625"
+    },
+    {
+      "label": "Ruff",
+      "file": "ruff.svg",
+      "width": 40,
+      "height": 20,
+      "sha256": "fa4044041c72a2ef671d2e2534b68b773996ccf27f41ed9cafa802e15df69095"
+    },
+    {
+      "label": "ShellCheck",
+      "file": "shellcheck.svg",
+      "width": 79,
+      "height": 20,
+      "sha256": "025b813e08808a9c7e7cf3d65b80b3f85ba2bccf208711d0a01bfbd6bec4de90"
+    }
+  ]
+}
