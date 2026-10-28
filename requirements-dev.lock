@@ -1,0 +1,9 @@
+-r requirements-web.lock
+-r requirements-ocr.lock
+coverage==7.13.1
+iniconfig==2.3.0
+packaging==25.0
+pluggy==1.6.0
+pytest==9.0.2
+pytest-asyncio==1.3.0
+ruff==0.14.14
