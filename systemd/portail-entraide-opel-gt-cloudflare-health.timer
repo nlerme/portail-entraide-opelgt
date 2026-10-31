@@ -1,0 +1,11 @@
+[Unit]
+Description=Portail Entraide Opel GT - contrôle périodique de Cloudflare Tunnel
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=60s
+AccuracySec=5s
+Unit=portail-entraide-opel-gt-cloudflare-health.service
+
+[Install]
+WantedBy=timers.target
