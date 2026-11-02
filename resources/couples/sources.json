@@ -1,0 +1,270 @@
+{
+  "document": "1973 Opel Service Manual",
+  "publisher": "Buick Motor Division / General Motors Corporation",
+  "copyright": "General Motors Corporation, 1972",
+  "url": "https://www.mantablog.nl/wp-content/uploads/mediapress/groups/4/8888/Service-Manual-Opel-GT-Opel-1900-Manta-A.pdf",
+  "sha256": "d92e58179055d5761029ed4a344a07ab3850b7dc4f1ab3b8a3bc369bf3b31408",
+  "views": [
+    {
+      "id": 4,
+      "subject": "Moteur : bloc et distribution",
+      "page": 294,
+      "printed_page": "6A-3",
+      "figure": "6A-1",
+      "clip": [
+        63,
+        78,
+        568,
+        552
+      ],
+      "area": [
+        42,
+        90,
+        553,
+        592
+      ],
+      "mappings": [
+        {
+          "reference": "1",
+          "rows": [
+            1
+          ],
+          "target": [
+            246,
+            407
+          ],
+          "label": [
+            278,
+            510
+          ],
+          "text": "Chapeaux de bielles : fixations"
+        },
+        {
+          "reference": "6",
+          "rows": [
+            6
+          ],
+          "target": [
+            177,
+            207
+          ],
+          "label": [
+            85,
+            105
+          ],
+          "text": "Pignon d'arbre à cames : fixations"
+        },
+        {
+          "reference": "9",
+          "rows": [
+            9
+          ],
+          "target": [
+            118,
+            406
+          ],
+          "label": [
+            84,
+            470
+          ],
+          "text": "Poulie de vilebrequin : fixation"
+        }
+      ],
+      "note": "Coupe longitudinale du moteur 1,9 l, reproduite du manuel constructeur.",
+      "source_clip_unit": "PDF point, origin top left",
+      "pdf_sha256": "2f6f88e28400b733c78079699d3deb97c02c605db09915ee126f71ceb43bc02e"
+    },
+    {
+      "id": 5,
+      "subject": "Moteur : culbuteurs, bougie et palier",
+      "page": 295,
+      "printed_page": "6A-4",
+      "figure": "6A-4",
+      "clip": [
+        321,
+        406,
+        558,
+        737
+      ],
+      "area": [
+        100,
+        90,
+        495,
+        650
+      ],
+      "mappings": [
+        {
+          "reference": "2",
+          "rows": [
+            2
+          ],
+          "target": [
+            397,
+            642
+          ],
+          "label": [
+            541,
+            672
+          ],
+          "text": "Chapeaux de paliers du vilebrequin : fixations"
+        },
+        {
+          "reference": "10",
+          "rows": [
+            10
+          ],
+          "target": [
+            449,
+            461
+          ],
+          "label": [
+            340,
+            430
+          ],
+          "text": "Goujons de culbuteurs dans la culasse"
+        },
+        {
+          "reference": "11",
+          "rows": [
+            11
+          ],
+          "target": [
+            484,
+            511
+          ],
+          "label": [
+            547,
+            501
+          ],
+          "text": "Bougie : corps fileté dans la culasse"
+        }
+      ],
+      "note": "Coupe transversale du moteur 1,9 l, reproduite du manuel constructeur.",
+      "source_clip_unit": "PDF point, origin top left",
+      "pdf_sha256": "98228f80ca728ad37d9787df95b804b98a8dadc552de295ea702e8e500ddb132"
+    },
+    {
+      "id": 6,
+      "subject": "Suspension arrière : bras inférieur",
+      "page": 221,
+      "printed_page": "3F-54",
+      "figure": "3F-5",
+      "clip": [
+        42,
+        90,
+        560,
+        727
+      ],
+      "area": [
+        42,
+        85,
+        553,
+        713
+      ],
+      "mappings": [
+        {
+          "reference": "51",
+          "rows": [
+            51
+          ],
+          "target": [
+            306,
+            502
+          ],
+          "label": [
+            502,
+            518
+          ],
+          "text": "Bras inférieur : fixation côté pont"
+        },
+        {
+          "reference": "51",
+          "rows": [
+            51
+          ],
+          "target": [
+            211,
+            652
+          ],
+          "label": [
+            168,
+            709
+          ],
+          "text": "Bras inférieur : fixation côté châssis"
+        }
+      ],
+      "note": "Planche commune : la barre stabilisatrice représentée ne concerne pas la GT.",
+      "source_clip_unit": "PDF point, origin top left",
+      "pdf_sha256": "024ce5248383deca9f1ce4fffcf4c762001da28d3cf206ec6faca3983105650c"
+    },
+    {
+      "id": 7,
+      "subject": "Pont arrière : différentiel et couvercle",
+      "page": 256,
+      "printed_page": "4B-25",
+      "figure": "4B-37",
+      "clip": [
+        42,
+        100,
+        565,
+        715
+      ],
+      "area": [
+        42,
+        85,
+        553,
+        687
+      ],
+      "mappings": [
+        {
+          "reference": "45",
+          "rows": [
+            45
+          ],
+          "target": [
+            354,
+            273
+          ],
+          "label": [
+            362,
+            310
+          ],
+          "text": "Couronne sur boîtier du différentiel : boulons"
+        },
+        {
+          "reference": "46",
+          "rows": [
+            46
+          ],
+          "target": [
+            314,
+            216
+          ],
+          "label": [
+            346,
+            207
+          ],
+          "text": "Chapeaux de paliers latéraux : boulons"
+        },
+        {
+          "reference": "50",
+          "rows": [
+            50
+          ],
+          "target": [
+            461,
+            222
+          ],
+          "label": [
+            525,
+            265
+          ],
+          "text": "Couvercle du carter de pont : boulons"
+        }
+      ],
+      "note": "Vue éclatée du pont du manuel 1973 ; les repères concernent ce montage.",
+      "source_clip_unit": "PDF point, origin top left",
+      "pdf_sha256": "a35cebe7b72738de5b87b3d54595feb77d6c28c0ed151ac6c51837269da8c3f8"
+    }
+  ]
+}

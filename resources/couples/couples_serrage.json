@@ -1,0 +1,1109 @@
+{
+  "title": "Couples de serrage (en m·kg) - Opel GT 1900",
+  "subtitle": "Moteur 1,9 l.-S : couples existants et repères sur les schémas disponibles",
+  "source_note": "Chaque petit cercle est centré sur le numéro imprimé de la pièce dans la vue éclatée. Sa couleur correspond à la catégorie de la ligne associée ; lorsqu’un même repère relève de plusieurs catégories, le cercle est partagé entre leurs couleurs. Un clic sur un repère visuel affiche la ou les lignes associées ; un clic sur un repère de la liste ouvre la vue au bon emplacement. La référence 44+ de la vue 3 est imprimée « 440+ » dans le document source. La correspondance du repère 39 reste indiquée comme à confirmer. Les vues 4 à 7 reproduisent des dessins du manuel constructeur Opel 1973 ; leurs repères ajoutés reprennent les numéros des lignes L du tableau. La source et le montage représenté sont précisés dans chaque PDF. Seules les correspondances identifiées sont ajoutées ; les autres lignes restent sans repère.",
+  "unit": "m·kg",
+  "sections": [
+    "Moteur",
+    "Direction",
+    "Suspension avant",
+    "Suspension arrière",
+    "Freins"
+  ],
+  "row_count": 61,
+  "views": [
+    {
+      "id": 1,
+      "label": "Vue éclatée 1",
+      "image": "/documents/vue-eclatee-1.jpg",
+      "pdf": "/documents/vue-eclatee-1.pdf",
+      "markers": [
+        {
+          "reference": "5",
+          "x_percent": 35.259,
+          "y_percent": 30.261,
+          "x_px": 525,
+          "y_px": 637
+        },
+        {
+          "reference": "5",
+          "x_percent": 60.981,
+          "y_percent": 29.929,
+          "x_px": 908,
+          "y_px": 630
+        },
+        {
+          "reference": "4",
+          "x_percent": 35.393,
+          "y_percent": 38.48,
+          "x_px": 527,
+          "y_px": 810
+        },
+        {
+          "reference": "4",
+          "x_percent": 61.383,
+          "y_percent": 38.1,
+          "x_px": 914,
+          "y_px": 802
+        },
+        {
+          "reference": "10",
+          "x_percent": 12.827,
+          "y_percent": 20.808,
+          "x_px": 191,
+          "y_px": 438
+        },
+        {
+          "reference": "47",
+          "x_percent": 24.379,
+          "y_percent": 64.276,
+          "x_px": 363,
+          "y_px": 1353
+        },
+        {
+          "reference": "47",
+          "x_percent": 78.643,
+          "y_percent": 64.228,
+          "x_px": 1171,
+          "y_px": 1352
+        },
+        {
+          "reference": "22",
+          "x_percent": 32.774,
+          "y_percent": 88.599,
+          "x_px": 488,
+          "y_px": 1865
+        },
+        {
+          "reference": "22",
+          "x_percent": 64.741,
+          "y_percent": 88.171,
+          "x_px": 964,
+          "y_px": 1856
+        },
+        {
+          "reference": "40",
+          "x_percent": 28.744,
+          "y_percent": 66.841,
+          "x_px": 428,
+          "y_px": 1407
+        },
+        {
+          "reference": "40",
+          "x_percent": 72.398,
+          "y_percent": 65.843,
+          "x_px": 1078,
+          "y_px": 1386
+        },
+        {
+          "reference": "40",
+          "x_percent": 18.805,
+          "y_percent": 72.637,
+          "x_px": 280,
+          "y_px": 1529
+        },
+        {
+          "reference": "40",
+          "x_percent": 81.867,
+          "y_percent": 70.309,
+          "x_px": 1219,
+          "y_px": 1480
+        },
+        {
+          "reference": "23",
+          "x_percent": 32.438,
+          "y_percent": 80.855,
+          "x_px": 483,
+          "y_px": 1702
+        },
+        {
+          "reference": "23",
+          "x_percent": 65.212,
+          "y_percent": 80.38,
+          "x_px": 971,
+          "y_px": 1692
+        },
+        {
+          "reference": "27",
+          "x_percent": 12.357,
+          "y_percent": 79.43,
+          "x_px": 184,
+          "y_px": 1672
+        },
+        {
+          "reference": "27",
+          "x_percent": 88.986,
+          "y_percent": 78.337,
+          "x_px": 1325,
+          "y_px": 1649
+        },
+        {
+          "reference": "28",
+          "x_percent": 28.475,
+          "y_percent": 77.102,
+          "x_px": 424,
+          "y_px": 1623
+        },
+        {
+          "reference": "28",
+          "x_percent": 72.398,
+          "y_percent": 75.154,
+          "x_px": 1078,
+          "y_px": 1582
+        }
+      ],
+      "image_width": 1489,
+      "image_height": 2105
+    },
+    {
+      "id": 2,
+      "label": "Vue éclatée 2",
+      "image": "/documents/vue-eclatee-2.jpg",
+      "pdf": "/documents/vue-eclatee-2.pdf",
+      "markers": [
+        {
+          "reference": "18",
+          "x_percent": 69.51,
+          "y_percent": 19.62,
+          "x_px": 1035,
+          "y_px": 413
+        },
+        {
+          "reference": "18",
+          "x_percent": 84.419,
+          "y_percent": 33.017,
+          "x_px": 1257,
+          "y_px": 695
+        },
+        {
+          "reference": "31",
+          "x_percent": 35.997,
+          "y_percent": 52.779,
+          "x_px": 536,
+          "y_px": 1111
+        },
+        {
+          "reference": "62",
+          "x_percent": 72.398,
+          "y_percent": 65.416,
+          "x_px": 1078,
+          "y_px": 1377
+        },
+        {
+          "reference": "62",
+          "x_percent": 87.105,
+          "y_percent": 82.185,
+          "x_px": 1297,
+          "y_px": 1730
+        },
+        {
+          "reference": "60",
+          "x_percent": 45.735,
+          "y_percent": 71.591,
+          "x_px": 681,
+          "y_px": 1507
+        },
+        {
+          "reference": "12",
+          "x_percent": 49.496,
+          "y_percent": 46.698,
+          "x_px": 737,
+          "y_px": 983
+        },
+        {
+          "reference": "19",
+          "x_percent": 63.331,
+          "y_percent": 33.492,
+          "x_px": 943,
+          "y_px": 705
+        },
+        {
+          "reference": "13",
+          "x_percent": 17.529,
+          "y_percent": 49.026,
+          "x_px": 261,
+          "y_px": 1032
+        },
+        {
+          "reference": "37",
+          "x_percent": 8.798,
+          "y_percent": 59.287,
+          "x_px": 131,
+          "y_px": 1248
+        }
+      ],
+      "image_width": 1489,
+      "image_height": 2105
+    },
+    {
+      "id": 3,
+      "label": "Vue éclatée 3",
+      "image": "/documents/vue-eclatee-3.jpg",
+      "pdf": "/documents/vue-eclatee-3.pdf",
+      "markers": [
+        {
+          "reference": "44+",
+          "x_percent": 78.524,
+          "y_percent": 70.4,
+          "x_px": 1298,
+          "y_px": 1760
+        },
+        {
+          "reference": "6",
+          "x_percent": 43.497,
+          "y_percent": 33.4,
+          "x_px": 719,
+          "y_px": 835
+        },
+        {
+          "reference": "28",
+          "x_percent": 63.218,
+          "y_percent": 37.0,
+          "x_px": 1045,
+          "y_px": 925
+        },
+        {
+          "reference": "41",
+          "x_percent": 88.99,
+          "y_percent": 16.4,
+          "x_px": 1471,
+          "y_px": 410
+        },
+        {
+          "reference": "39",
+          "x_percent": 89.05,
+          "y_percent": 10.28,
+          "uncertain": true,
+          "x_px": 1472,
+          "y_px": 257
+        }
+      ],
+      "image_width": 1653,
+      "image_height": 2500
+    },
+    {
+      "id": 4,
+      "label": "Vue éclatée 4 - Moteur : bloc et distribution",
+      "image": "/documents/vue-eclatee-4.jpg",
+      "pdf": "/documents/vue-eclatee-4.pdf",
+      "image_width": 1785,
+      "image_height": 2526,
+      "markers": [
+        {
+          "reference": "1",
+          "x_percent": 43.6226,
+          "y_percent": 63.9331,
+          "x_px": 779,
+          "y_px": 1615
+        },
+        {
+          "reference": "6",
+          "x_percent": 10.8002,
+          "y_percent": 15.2619,
+          "x_px": 193,
+          "y_px": 386
+        },
+        {
+          "reference": "9",
+          "x_percent": 10.6302,
+          "y_percent": 59.1261,
+          "x_px": 190,
+          "y_px": 1494
+        }
+      ],
+      "source": {
+        "document": "1973 Opel Service Manual",
+        "printed_page": "6A-3",
+        "figure": "6A-1",
+        "pdf_page": 294
+      }
+    },
+    {
+      "id": 5,
+      "label": "Vue éclatée 5 - Moteur : culbuteurs, bougie et palier",
+      "image": "/documents/vue-eclatee-5.jpg",
+      "pdf": "/documents/vue-eclatee-5.pdf",
+      "image_width": 1785,
+      "image_height": 2526,
+      "markers": [
+        {
+          "reference": "2",
+          "x_percent": 78.4314,
+          "y_percent": 63.8361,
+          "x_px": 1400,
+          "y_px": 1612
+        },
+        {
+          "reference": "10",
+          "x_percent": 22.1289,
+          "y_percent": 15.9343,
+          "x_px": 395,
+          "y_px": 402
+        },
+        {
+          "reference": "11",
+          "x_percent": 80.112,
+          "y_percent": 29.9881,
+          "x_px": 1430,
+          "y_px": 757
+        }
+      ],
+      "source": {
+        "document": "1973 Opel Service Manual",
+        "printed_page": "6A-4",
+        "figure": "6A-4",
+        "pdf_page": 295
+      }
+    },
+    {
+      "id": 6,
+      "label": "Vue éclatée 6 - Suspension arrière : bras inférieur",
+      "image": "/documents/vue-eclatee-6.jpg",
+      "pdf": "/documents/vue-eclatee-6.pdf",
+      "image_width": 1785,
+      "image_height": 2526,
+      "markers": [
+        {
+          "reference": "51",
+          "x_percent": 83.3042,
+          "y_percent": 60.2082,
+          "x_px": 1487,
+          "y_px": 1521
+        },
+        {
+          "reference": "51",
+          "x_percent": 27.9629,
+          "y_percent": 82.5718,
+          "x_px": 499,
+          "y_px": 2086
+        }
+      ],
+      "source": {
+        "document": "1973 Opel Service Manual",
+        "printed_page": "3F-54",
+        "figure": "3F-5",
+        "pdf_page": 221
+      }
+    },
+    {
+      "id": 7,
+      "label": "Vue éclatée 7 - Pont arrière : différentiel et couvercle",
+      "image": "/documents/vue-eclatee-7.jpg",
+      "pdf": "/documents/vue-eclatee-7.pdf",
+      "image_width": 1785,
+      "image_height": 2526,
+      "markers": [
+        {
+          "reference": "45",
+          "x_percent": 59.6063,
+          "y_percent": 34.5293,
+          "x_px": 1064,
+          "y_px": 872
+        },
+        {
+          "reference": "46",
+          "x_percent": 56.979,
+          "y_percent": 22.5772,
+          "x_px": 1017,
+          "y_px": 570
+        },
+        {
+          "reference": "50",
+          "x_percent": 86.3727,
+          "y_percent": 29.3076,
+          "x_px": 1542,
+          "y_px": 740
+        }
+      ],
+      "source": {
+        "document": "1973 Opel Service Manual",
+        "printed_page": "4B-25",
+        "figure": "4B-37",
+        "pdf_page": 256
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "section": "Moteur",
+      "item": "Chapeaux de bielles",
+      "torque_mkg": 5.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "1"
+      }
+    },
+    {
+      "id": 2,
+      "section": "Moteur",
+      "item": "Chapeaux de paliers du vilebrequin",
+      "torque_mkg": 10.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "5": "2"
+      }
+    },
+    {
+      "id": 3,
+      "section": "Moteur",
+      "item": "Fixation du volant",
+      "torque_mkg": 8.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 4,
+      "section": "Moteur",
+      "item": "Culasse (à chaud)",
+      "torque_mkg": 10.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 5,
+      "section": "Moteur",
+      "item": "Culasse (à froid)",
+      "torque_mkg": 8.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 6,
+      "section": "Moteur",
+      "item": "Pignon d’arbre à cames",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "6"
+      }
+    },
+    {
+      "id": 7,
+      "section": "Moteur",
+      "item": "Support de génératrice sur bloc-cylindres",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 8,
+      "section": "Moteur",
+      "item": "Support de génératrice sur carter de distribution",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 9,
+      "section": "Moteur",
+      "item": "Poulie de vilebrequin",
+      "torque_mkg": 7.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "9"
+      }
+    },
+    {
+      "id": 10,
+      "section": "Moteur",
+      "item": "Goujons de culbuteurs dans culasse",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "5": "10"
+      }
+    },
+    {
+      "id": 11,
+      "section": "Moteur",
+      "item": "Bougies",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "5": "11"
+      }
+    },
+    {
+      "id": 12,
+      "section": "Moteur",
+      "item": "Carter d’embrayage sur bloc-cylindres",
+      "torque_mkg": 5.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 13,
+      "section": "Moteur",
+      "item": "Carter de distribution sur bloc-cylindres",
+      "torque_mkg": 2.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 14,
+      "section": "Moteur",
+      "item": "Pompe à eau sur carter de distribution",
+      "torque_mkg": 1.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 15,
+      "section": "Moteur",
+      "item": "Silent-blocs avant sur bloc-cylindres",
+      "torque_mkg": 5.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 16,
+      "section": "Moteur",
+      "item": "Silent-blocs arrière sur prolonge de boîte",
+      "torque_mkg": 3.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 17,
+      "section": "Direction",
+      "item": "Volant sur arbre de direction (écrou)",
+      "torque_mkg": 2.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "44+"
+      }
+    },
+    {
+      "id": 18,
+      "section": "Direction",
+      "item": "Fixation avant du support de colonne (écrou)",
+      "torque_mkg": 1.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 19,
+      "section": "Direction",
+      "item": "Boîtier de direction sur traverse de suspension avant",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "6"
+      }
+    },
+    {
+      "id": 20,
+      "section": "Direction",
+      "item": "Écrou de blocage de la vis de réglage",
+      "torque_mkg": 6.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 21,
+      "section": "Direction",
+      "item": "Écrou du pignon",
+      "torque_mkg": 1.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "28"
+      }
+    },
+    {
+      "id": 22,
+      "section": "Direction",
+      "item": "Arbre de direction dans accouplement (collier)",
+      "torque_mkg": 2.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "41"
+      }
+    },
+    {
+      "id": 23,
+      "section": "Direction",
+      "item": "Rotule, bielle de direction sur crémaillère",
+      "torque_mkg": 6.0,
+      "views": {
+        "1": "23",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 24,
+      "section": "Direction",
+      "item": "Écrou à créneaux, bielle sur bras de direction",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "27",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 25,
+      "section": "Direction",
+      "item": "Collier, rotule sur bielle de direction",
+      "torque_mkg": 1.5,
+      "views": {
+        "1": "28",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 26,
+      "section": "Direction",
+      "item": "Fixation, axe dans bras supérieur de suspension et support d’amortisseur",
+      "torque_mkg": 4.5,
+      "views": {
+        "1": "",
+        "2": "18",
+        "3": ""
+      }
+    },
+    {
+      "id": 27,
+      "section": "Suspension avant",
+      "item": "Essieu de suspension avant au châssis",
+      "torque_mkg": 5.0,
+      "views": {
+        "1": "5, 4",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 28,
+      "section": "Suspension avant",
+      "item": "Essieu de suspension avant à l’encastrement de roue",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "10",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 29,
+      "section": "Suspension avant",
+      "item": "Bride, arbre de direction au flasque d’arbre de direction",
+      "torque_mkg": 2.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "39 mais pas certain"
+      }
+    },
+    {
+      "id": 30,
+      "section": "Suspension avant",
+      "item": "Écrous de roues",
+      "torque_mkg": 9.0,
+      "views": {
+        "1": "",
+        "2": "31",
+        "3": ""
+      }
+    },
+    {
+      "id": 31,
+      "section": "Suspension avant",
+      "item": "Axe du triangle inférieur au triangle inférieur",
+      "torque_mkg": 4.5,
+      "views": {
+        "1": "",
+        "2": "62",
+        "3": ""
+      }
+    },
+    {
+      "id": 32,
+      "section": "Suspension avant",
+      "item": "Rotule porteuse du triangle inférieur à la fusée",
+      "torque_mkg": 5.5,
+      "views": {
+        "1": "",
+        "2": "60,12",
+        "3": ""
+      }
+    },
+    {
+      "id": 33,
+      "section": "Suspension avant",
+      "item": "Rotule porteuse du triangle supérieur à la fusée",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "",
+        "2": "19",
+        "3": ""
+      }
+    },
+    {
+      "id": 34,
+      "section": "Suspension avant",
+      "item": "Amortisseur au triangle inférieur",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "47",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 35,
+      "section": "Suspension avant",
+      "item": "Bras de direction à la fusée",
+      "torque_mkg": 6.5,
+      "views": {
+        "1": "22",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 36,
+      "section": "Suspension avant",
+      "item": "Plateau de frein ou déflecteur du disque et bras de direction à la fusée, boulons 6 pans M10",
+      "torque_mkg": 6.5,
+      "views": {
+        "1": "",
+        "2": "13",
+        "3": ""
+      }
+    },
+    {
+      "id": 37,
+      "section": "Suspension avant",
+      "item": "Plateau de frein ou déflecteur du disque et bras de direction à la fusée, boulons 6 pans M8",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "13",
+        "3": ""
+      }
+    },
+    {
+      "id": 38,
+      "section": "Suspension avant",
+      "item": "Étrier de frein à la fusée",
+      "torque_mkg": 10.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 39,
+      "section": "Suspension avant",
+      "item": "Triangle inférieur à l’œil du ressort avant",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "40",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 40,
+      "section": "Suspension avant",
+      "item": "Disque de frein au moyeu de roue avant",
+      "torque_mkg": 5.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 41,
+      "section": "Suspension avant",
+      "item": "Axe du triangle supérieur au support de l’amortisseur et au triangle supérieur",
+      "torque_mkg": 4.5,
+      "views": {
+        "1": "",
+        "2": "18",
+        "3": ""
+      }
+    },
+    {
+      "id": 42,
+      "section": "Suspension avant",
+      "item": "Écrou de fusée, jeu des roulements des roues avant",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "37",
+        "3": ""
+      }
+    },
+    {
+      "id": 43,
+      "section": "Suspension avant",
+      "item": "Écrou crénelé, barre d’accouplement au bras de direction",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "27",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 44,
+      "section": "Suspension avant",
+      "item": "Boîtier de direction à l’essieu de suspension avant",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "6"
+      }
+    },
+    {
+      "id": 45,
+      "section": "Suspension arrière",
+      "item": "Boulons fixant la couronne au boîtier du différentiel",
+      "torque_mkg": 6.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "7": "45"
+      }
+    },
+    {
+      "id": 46,
+      "section": "Suspension arrière",
+      "item": "Boulons fixant les chapeaux de palier latéraux du boîtier du différentiel",
+      "torque_mkg": 4.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "7": "46"
+      }
+    },
+    {
+      "id": 47,
+      "section": "Suspension arrière",
+      "item": "Arbre de transmission à la prolonge du pignon d’attaque",
+      "torque_mkg": 1.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 48,
+      "section": "Suspension arrière",
+      "item": "Écrou fixant le flasque à la prolonge du pignon d’attaque",
+      "torque_mkg": 12.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 49,
+      "section": "Suspension arrière",
+      "item": "Fixation du caoutchouc amortisseur (silent-bloc) du joint central à la prolonge",
+      "torque_mkg": 4.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 50,
+      "section": "Suspension arrière",
+      "item": "Boulons fixant le couvercle du carter du pont arrière",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "7": "50"
+      }
+    },
+    {
+      "id": 51,
+      "section": "Suspension arrière",
+      "item": "Fixation du bras inférieur au support du longeron de châssis et au siège de ressort du pont arrière",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "6": "51"
+      }
+    },
+    {
+      "id": 52,
+      "section": "Suspension arrière",
+      "item": "Fixation du support du joint central à l’infrastructure",
+      "torque_mkg": 5.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 53,
+      "section": "Freins",
+      "item": "Plateau de frein à la trompette du pont arrière",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 54,
+      "section": "Freins",
+      "item": "Plateau de frein ou déflecteur du disque de frein à la fusée, boulons 8 pans M10",
+      "torque_mkg": 6.5,
+      "views": {
+        "1": "",
+        "2": "13",
+        "3": ""
+      }
+    },
+    {
+      "id": 55,
+      "section": "Freins",
+      "item": "Plateau de frein ou déflecteur du disque de frein à la fusée, boulons 8 pans M8",
+      "torque_mkg": 2.5,
+      "views": {
+        "1": "",
+        "2": "13",
+        "3": ""
+      }
+    },
+    {
+      "id": 56,
+      "section": "Freins",
+      "item": "Étrier de frein à la fusée",
+      "torque_mkg": 10.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 57,
+      "section": "Freins",
+      "item": "Disque de frein au moyeu de la roue",
+      "torque_mkg": 5.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 58,
+      "section": "Freins",
+      "item": "Cylindre de frein de la roue, plateau de frein avant seulement sur les roues avec tambour de frein",
+      "torque_mkg": 0.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 59,
+      "section": "Freins",
+      "item": "Arrière",
+      "torque_mkg": 0.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 60,
+      "section": "Freins",
+      "item": "Maître-cylindre de frein tandem au servo-frein",
+      "torque_mkg": 2.0,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    {
+      "id": 61,
+      "section": "Freins",
+      "item": "Servo-frein au support du tablier",
+      "torque_mkg": 1.5,
+      "views": {
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    }
+  ]
+}

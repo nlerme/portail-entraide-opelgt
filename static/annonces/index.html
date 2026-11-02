@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr" data-theme="light" data-font="normal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Petites annonces - Portail Entraide Opel GT</title>
+  <link rel="icon" href="/static/common/logo.png" type="image/png">
+  <link rel="stylesheet" href="/static/common/base.css?v=1.1.37">
+  <link rel="stylesheet" href="/static/common/responsive.css?v=1.1.37">
+  <link rel="stylesheet" href="/static/annonces/styles.css?v=1.1.37">
+  <link rel="stylesheet" href="/static/vendor/leaflet-1.9.4/leaflet.css">
+  <link rel="stylesheet" href="/static/common/footer.css?v=1.1.37">
+</head>
+<body class="page-annonces">
+  <a class="skip-link" href="#annoncesMain">Aller au contenu</a>
+  <div id="appShell" class="services-shell services-shell-wide hidden">
+    <header class="services-header">
+      <img src="/static/common/logo.png" alt="Logo Entraide Opel GT">
+      <div class="services-header-copy">
+        <p class="services-slogan">Opel GT 1968-1973 : « Seul le vol procure plus de sensations ».</p>
+        <h1 class="services-title">Petites annonces</h1>
+        <p class="services-tagline">Opel GT 1100, 1900 et GT/J d’époque, proposées en France.</p>
+      </div>
+      <div class="display-controls" aria-label="État et réglages d’affichage">
+        <div class="control-row"><span class="connectivity-badge checking" data-connectivity-status role="status" aria-live="polite"><span aria-hidden="true">●</span> Vérification Internet…</span></div>
+        <div class="control-row"><span id="sessionRemaining" class="session-timer" role="status" aria-live="polite">Temps restant avant déconnexion : --:--</span></div>
+        <div class="control-row"><button type="button" class="icon-button" data-ui-theme><span data-theme-icon aria-hidden="true">☾</span>&nbsp;<span data-theme-label>Mode sombre</span></button></div>
+        <div class="control-row control-row-fonts">
+          <button type="button" class="icon-button" data-ui-font-decrease aria-label="Diminuer la taille du texte">A−</button>
+          <button type="button" class="icon-button" data-ui-font-increase aria-label="Augmenter la taille du texte">A+</button>
+          <button id="logout" class="portal-control logout-control" type="button">Se déconnecter</button>
+        </div>
+      </div>
+    </header>
+    <nav class="portal-nav panel" aria-label="Services du portail">
+      <a href="/services">Retour à la liste des services</a>
+      <a href="/admin">Accès à la page d’administration</a>
+    </nav>
+    <main id="annoncesMain">
+      <section class="panel sources-panel" aria-labelledby="sourcesTitle">
+        <h2 id="sourcesTitle">Filtrer les annonces par source</h2>
+        <p class="muted">Sélectionnez les sources à afficher. Cliquez sur une annonce pour la consulter sur son site d’origine.</p>
+        <fieldset id="sources" disabled><legend class="visually-hidden">Sources à afficher</legend><div id="sourceChoices" class="source-choices"></div></fieldset>
+        <div class="update-controls"><button id="refreshAds" type="button" disabled>Actualiser</button><span id="refreshHint" class="muted">Une actualisation manuelle toutes les 30 minutes.</span></div>
+        <p class="collection-frequency">Mise à jour automatique tous les jours à 02:00 (Europe/Paris).</p>
+        <p id="lastUpdate" class="muted">Première collecte en attente.</p>
+      </section>
+      <p id="updateNotice" class="notice hidden" role="status">Actualisation en cours. Les annonces restent consultables.</p>
+      <p id="errorNotice" class="notice error hidden" role="alert"></p>
+      <p id="actionNotice" class="notice hidden" role="status"></p>
+      <section class="panel filters-panel" aria-labelledby="filtersTitle">
+        <h2 id="filtersTitle">Affiner et suivre les annonces</h2>
+        <div class="ad-filters">
+          <label>Budget minimum (€)<input id="minPrice" type="number" min="0" step="100" inputmode="numeric" placeholder="Sans minimum"></label>
+          <label>Budget maximum (€)<input id="maxPrice" type="number" min="0" step="100" inputmode="numeric" placeholder="Sans maximum"></label>
+          <label>Modèle<select id="modelFilter"><option value="">Tous les modèles</option value="1100">GT 1100</option><option value="1900">GT 1900</option><option value="GT/J">GT/J</option><option value="Modèle non précisé">Modèle non précisé</option></select></label>
+          <label>Département<select id="departmentFilter"><option value="">Tous les départements</option></select></label>
+        </div>
+        <div class="ad-options">
+          <label><input id="newOnly" type="checkbox"> Nouveautés uniquement</label>
+          <label><input id="favoritesOnly" type="checkbox"> Mes favoris uniquement</label>
+          <label><input id="showHidden" type="checkbox"> Inclure les annonces masquées</label>
+          <label><input id="groupDuplicates" type="checkbox" checked> Regrouper les doublons possibles</label>
+        </div>
+        <div class="update-controls"><button id="markSeen" type="button">Marquer les annonces comme vues</button><button id="resetFilters" type="button">Réinitialiser les filtres</button><span id="newHint" class="muted"></span></div>
+        <details class="ntfy-options"><summary>Résumé quotidien ntfy</summary>
+          <p id="ntfyStatus" class="muted"></p>
+          <p class="muted">Le résumé utilise le sujet ntfy commun du portail : ses abonnés peuvent lire les annonces et favoris signalés. L’intervalle global configuré dans l’administration reste respecté (au plus un envoi par jour).</p>
+          <label><input id="notifyNew" type="checkbox"> Inclure les nouvelles annonces</label>
+          <label><input id="notifyDrops" type="checkbox"> Inclure les baisses de prix de mes favoris</label>
+        </details>
+      </section>
+      <section id="annoncesContent" class="panel hidden" aria-labelledby="annoncesTitle" aria-busy="true">
+        <div class="annonces-heading"><h2 id="annoncesTitle">Annonces disponibles</h2><p id="resultCount" role="status" aria-live="polite"></p></div>
+        <div class="sort-controls" role="group" aria-label="Trier les annonces">
+          <span>Trier par :</span>
+          <button type="button" data-sort="seller_type" aria-pressed="false">Type de vendeur</button>
+          <button type="button" data-sort="model" aria-pressed="false">Modèle</button>
+          <button type="button" data-sort="year" aria-pressed="false">Année</button>
+          <button type="button" data-sort="published_at" aria-pressed="true">Date de l’annonce ↓</button>
+          <button type="button" data-sort="department" aria-pressed="false">Lieu (département)</button>
+        </div>
+        <div id="annoncesList" class="annonces-grid"></div>
+        <p id="emptyState" class="empty-state hidden">Aucune annonce pour les sources sélectionnées.</p>
+      </section>
+      <section id="mapPanel" class="panel" aria-labelledby="mapTitle">
+        <div class="annonces-heading"><h2 id="mapTitle">Localiser les annonces</h2><button id="fitMap" type="button">Voir tous les repères</button></div>
+        <p class="muted">La carte suit les filtres. Les numéros et couleurs correspondent aux annonces. Cliquez sur un numéro pour consulter son récapitulatif. Les repères indiquent le centre de la commune, sans adresse du vendeur.</p>
+        <div id="mapLegend" class="map-legend" aria-label="Couleurs des sources"></div>
+        <div id="annoncesMap" role="region" aria-label="Carte OpenStreetMap des petites annonces" tabindex="0"></div>
+        <p id="mapStatus" class="muted" role="status"></p><div id="unlocatedAds" class="unlocated-ads"></div>
+        <p class="muted map-credits">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · Communes : <a href="https://geo.api.gouv.fr/" target="_blank" rel="noopener noreferrer">API Découpage administratif</a> · <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">Signaler une erreur cartographique</a></p>
+      </section>
+    </main>
+    <footer class="panel app-footer portal-footer" aria-label="Informations sur le portail">
+      <div class="footer-badges" aria-label="Technologies utilisées dans le bundle">
+        <div class="footer-badge-line">
+          <img alt="Python 3.11+" src="/static/common/badges/python-3-11.svg" width="93" height="20" loading="lazy" decoding="async">
+          <img alt="JavaScript" src="/static/common/badges/javascript.svg" width="73" height="20" loading="lazy" decoding="async">
+          <img alt="HTML5" src="/static/common/badges/html5.svg" width="56" height="20" loading="lazy" decoding="async">
+          <img alt="CSS" src="/static/common/badges/css.svg" width="40" height="20" loading="lazy" decoding="async">
+          <img alt="Bash" src="/static/common/badges/bash.svg" width="45" height="20" loading="lazy" decoding="async">
+          <img alt="SQL" src="/static/common/badges/sql.svg" width="40" height="20" loading="lazy" decoding="async">
+          <img alt="JSON" src="/static/common/badges/json.svg" width="45" height="20" loading="lazy" decoding="async">
+          <img alt="YAML" src="/static/common/badges/yaml.svg" width="47" height="20" loading="lazy" decoding="async">
+          <img alt="FastAPI" src="/static/common/badges/fastapi.svg" width="58" height="20" loading="lazy" decoding="async">
+          <img alt="Starlette" src="/static/common/badges/starlette.svg" width="66" height="20" loading="lazy" decoding="async">
+          <img alt="Uvicorn" src="/static/common/badges/uvicorn.svg" width="60" height="20" loading="lazy" decoding="async">
+          <img alt="Pydantic" src="/static/common/badges/pydantic.svg" width="65" height="20" loading="lazy" decoding="async">
+          <img alt="HTTPX" src="/static/common/badges/httpx.svg" width="54" height="20" loading="lazy" decoding="async">
+          <img alt="Requests" src="/static/common/badges/requests.svg" width="68" height="20" loading="lazy" decoding="async">
+          <img alt="urllib3" src="/static/common/badges/urllib3.svg" width="53" height="20" loading="lazy" decoding="async">
+          <img alt="Beautiful Soup 4" src="/static/common/badges/beautiful-soup-4.svg" width="109" height="20" loading="lazy" decoding="async">
+          <img alt="lbc" src="/static/common/badges/lbc.svg" width="34" height="20" loading="lazy" decoding="async">
+          <img alt="curl-cffi" src="/static/common/badges/curl-cffi.svg" width="59" height="20" loading="lazy" decoding="async">
+          <img alt="Argon2-cffi" src="/static/common/badges/argon2-cffi.svg" width="78" height="20" loading="lazy" decoding="async">
+          <img alt="Leaflet" src="/static/common/badges/leaflet.svg" width="87" height="20" loading="lazy" decoding="async">
+          <img alt="OpenStreetMap" src="/static/common/badges/openstreetmap.svg" width="104" height="20" loading="lazy" decoding="async">
+          <img alt="SQLite FTS5" src="/static/common/badges/sqlite-fts5.svg" width="84" height="20" loading="lazy" decoding="async">
+          <img alt="Tesseract OCR" src="/static/common/badges/tesseract-ocr.svg" width="97" height="20" loading="lazy" decoding="async">
+          <img alt="pytesseract" src="/static/common/badges/pytesseract.svg" width="82" height="20" loading="lazy" decoding="async">
+          <img alt="PyMuPDF" src="/static/common/badges/pymupdf.svg" width="69" height="20" loading="lazy" decoding="async">
+          <img alt="PDF.js" src="/static/common/badges/pdf-js.svg" width="95" height="20" loading="lazy" decoding="async">
+          <img alt="OpenCV" src="/static/common/badges/opencv.svg" width="63" height="20" loading="lazy" decoding="async">
+          <img alt="NumPy" src="/static/common/badges/numpy.svg" width="57" height="20" loading="lazy" decoding="async">
+          <img alt="Pillow" src="/static/common/badges/pillow.svg" width="49" height="20" loading="lazy" decoding="async">
+          <img alt="Linux" src="/static/common/badges/linux.svg" width="48" height="20" loading="lazy" decoding="async">
+          <img alt="Debian" src="/static/common/badges/debian.svg" width="57" height="20" loading="lazy" decoding="async">
+          <img alt="Ubuntu" src="/static/common/badges/ubuntu.svg" width="58" height="20" loading="lazy" decoding="async">
+          <img alt="Raspberry Pi OS" src="/static/common/badges/raspberry-pi-os.svg" width="106" height="20" loading="lazy" decoding="async">
+          <img alt="systemd" src="/static/common/badges/systemd.svg" width="65" height="20" loading="lazy" decoding="async">
+          <img alt="Cloudflare Tunnel" src="/static/common/badges/cloudflare-tunnel.svg" width="113" height="20" loading="lazy" decoding="async">
+          <img alt="ntfy" src="/static/common/badges/ntfy.svg" width="39" height="20" loading="lazy" decoding="async">
+          <img alt="pip" src="/static/common/badges/pip.svg" width="35" height="20" loading="lazy" decoding="async">
+          <img alt="venv" src="/static/common/badges/venv.svg" width="45" height="20" loading="lazy" decoding="async">
+          <img alt="Git" src="/static/common/badges/git.svg" width="34" height="20" loading="lazy" decoding="async">
+          <img alt="GitHub Actions" src="/static/common/badges/github-actions.svg" width="100" height="20" loading="lazy" decoding="async">
+          <img alt="Dependabot" src="/static/common/badges/dependabot.svg" width="86" height="20" loading="lazy" decoding="async">
+          <img alt="Node.js" src="/static/common/badges/node-js.svg" width="59" height="20" loading="lazy" decoding="async">
+          <img alt="pytest" src="/static/common/badges/pytest.svg" width="53" height="20" loading="lazy" decoding="async">
+          <img alt="pytest-asyncio" src="/static/common/badges/pytest-asyncio.svg" width="98" height="20" loading="lazy" decoding="async">
+          <img alt="Ruff" src="/static/common/badges/ruff.svg" width="40" height="20" loading="lazy" decoding="async">
+          <img alt="ShellCheck" src="/static/common/badges/shellcheck.svg" width="79" height="20" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <hr class="footer-separator">
+      <div class="footer-release">
+        <span data-bundle-version>Version 1.1.37</span>
+        <a class="github-link" href="https://github.com/nlerme/portail-entraide-opelgt" target="_blank" rel="noopener noreferrer"><img src="/static/common/github.svg" alt="" aria-hidden="true" width="18" height="18">Code source sur GitHub</a>
+      </div>
+      <div class="footer-bottom">
+        <p>Auteur : Nicolas Lermé — Copyright 2026</p>
+        <p class="made-with-love">Fait avec amour <span role="img" aria-label="cœur">❤️</span></p>
+      </div>
+    </footer>
+  </div>
+  <script src="/static/common/portal_ui.js?v=1.1.37"></script>
+  <script src="/static/common/session_timer.js?v=1.1.37"></script>
+  <script src="/static/vendor/leaflet-1.9.4/leaflet.js"></script>
+  <script src="/static/annonces/app.js?v=1.1.37"></script>
+</body>
+</html>

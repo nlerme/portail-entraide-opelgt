@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="fr" data-theme="light" data-font="normal">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recherche bulletins - Portail Entraide Opel GT</title>
+  <link rel="stylesheet" href="/static/bulletins/styles.css?v=1.1.37" />
+  <link rel="stylesheet" href="/static/common/responsive.css?v=1.1.37">
+  <link rel="stylesheet" href="/static/common/footer.css?v=1.1.37">
+</head>
+<body class="page-bulletins">
+
+
+  <dialog id="pdfDialog" class="pdf-dialog" aria-labelledby="pdfTitle">
+    <div class="pdf-dialog-card">
+      <div class="pdf-toolbar">
+        <div>
+          <h2 id="pdfTitle" data-i18n="pdfTitle">Consultation du PDF local</h2>
+          <p id="pdfSubtitle" class="muted"></p>
+        </div>
+        <div class="toolbar-actions">
+          <a id="pdfOpenNewTab" class="button-like button-secondary" href="#" target="_blank" rel="noopener noreferrer" data-i18n="newTab">Nouvel onglet</a>
+          <button id="pdfCloseButton" type="button" class="button-secondary" data-i18n="close">Fermer</button>
+        </div>
+      </div>
+      <div class="pdf-controls" role="group" aria-label="Navigation dans le bulletin">
+        <label for="pdfPageNumber">Page</label>
+        <input id="pdfPageNumber" class="pdf-page-number" type="number" min="1" value="1" inputmode="numeric" disabled>
+        <span id="pdfPageCount" class="pdf-page-count">/ 0</span>
+        <label for="pdfZoom">Zoom</label>
+        <select id="pdfZoom" disabled>
+          <option value="0.5">50 %</option>
+          <option value="0.75">75 %</option>
+          <option value="1" selected>Largeur</option>
+          <option value="1.25">125 %</option>
+          <option value="1.5">150 %</option>
+          <option value="2">200 %</option>
+          <option value="3">300 %</option>
+        </select>
+        <div class="pdf-match-controls" role="group" aria-label="Occurrences de la recherche">
+          <button id="pdfPreviousMatch" type="button" class="button-secondary compact" aria-label="Occurrence précédente" title="Occurrence précédente" disabled>↑</button>
+          <span id="pdfMatchCount" role="status" aria-live="polite">Aucune recherche</span>
+          <button id="pdfNextMatch" type="button" class="button-secondary compact" aria-label="Occurrence suivante" title="Occurrence suivante" disabled>↓</button>
+        </div>
+      </div>
+      <p id="pdfStatus" class="pdf-status message info hidden" role="status" aria-live="polite"></p>
+      <div id="pdfViewport" class="pdf-viewport" tabindex="0" aria-label="Pages du bulletin" aria-busy="false">
+      </div>
+    </div>
+  </dialog>
+
+  <header id="header" class="hidden panel app-header">
+    <a class="brand" href="https://www.entraideopelgt.fr/" target="_blank" rel="noopener noreferrer" aria-label="Site de l'Entraide Opel GT">
+      <img src="/static/common/logo.png" alt="Logo Entraide Opel GT" />
+    </a>
+    <div class="header-copy">
+      <p class="eyebrow">Opel GT 1968-1973 : « Seul le vol procure plus de sensations ».</p>
+      <h1 class="bulletins-header-title" data-i18n="mainTitle">Recherches dans les bulletins</h1>
+      <p data-i18n="headerTagline">Recherche locale dans les bulletins PDF de l’Entraide Opel GT.</p>
+    </div>
+    <div class="display-controls" aria-label="Réglages d'affichage">
+      <div class="control-row control-row-connectivity">
+        <span id="connectivityBadge" class="connectivity-badge checking" role="status" aria-live="polite">
+          <span aria-hidden="true">●</span> Connexion Internet en cours de vérification
+        </span>
+      </div>
+      <div class="control-row">
+        <span id="sessionRemaining" class="session-timer" role="status" aria-live="polite">Temps restant avant déconnexion : --:--</span>
+      </div>
+      <div class="control-row control-row-theme">
+        <button id="themeToggle" type="button" class="icon-button" aria-pressed="false" aria-label="Basculer le mode clair ou sombre" title="Mode clair/sombre">🌙 Mode sombre</button>
+      </div>
+      <div class="control-row control-row-fonts">
+        <button id="fontDecrease" type="button" class="icon-button compact-control" title="Diminuer la taille du texte" data-i18n-title="fontDecreaseTitle">A−</button>
+        <button id="fontIncrease" type="button" class="icon-button compact-control" title="Augmenter la taille du texte" data-i18n-title="fontIncreaseTitle">A+</button>
+        <button id="logoutButton" type="button" class="button-secondary compact-control" data-i18n="logout">Se déconnecter</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="portal-nav panel" aria-label="Services du portail"><a href="/services">Retour à la liste des services</a><a href="/admin">Accès à la page d’administration</a></nav>
+  <main id="app" class="hidden">
+    <section class="panel search-panel">
+      <h2 data-i18n="searchTitle">Recherche avancée (sans IA)</h2>
+      <div class="bulletin-rules" aria-label="Fonctionnement de la récupération des bulletins">
+        <p id="lastSyncInfo" class="sync-info-line">Dernière synchronisation : inconnue</p>
+        <ul class="sync-rules">
+          <li>La récupération est déclenchée automatiquement dès l’arrivée sur la page de choix des services.</li>
+          <li>Aucun identifiant, mot de passe ou cookie du site membre n’est écrit sur disque.</li>
+          <li>Seuls les bulletins nouveaux ou plus récents que le cache local sont téléchargés.</li>
+          <li>La récupération et l’OCR continuent côté serveur même si le navigateur est fermé.</li>
+        </ul>
+      </div>
+      <div id="readinessMessage" class="message info hidden" role="status"></div>
+      <div id="syncProgressPanel" class="sync-progress-panel hidden" aria-live="polite">
+        <div class="progress-row">
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          <strong id="progressText">0%</strong>
+        </div>
+        <p id="etaText" class="muted"></p>
+        <p id="currentFileText" class="current-index-file"></p>
+        <div id="syncCounters" class="sync-counters"></div>
+      </div>
+      <form id="searchForm" class="search-grid" novalidate>
+        <div class="span-2">
+          <label for="keywords" data-i18n="keywordsLabel">Mots clés</label>
+          <input id="keywords" name="keywords" type="search" placeholder="Ex. carburateur, joint de pare-brise, frein* OR embrayage*" data-i18n-placeholder="keywordsPlaceholder" autocomplete="off" required />
+        </div>
+
+        <div>
+          <label for="mode" data-i18n="modeLabel">Mode</label>
+          <select id="mode" name="mode">
+            <option value="all" data-i18n="modeAll">Tous les mots</option>
+            <option value="any" data-i18n="modeAny">Au moins un mot</option>
+            <option value="phrase" data-i18n="modePhrase">Expression exacte</option>
+            <option value="raw" data-i18n="modeRaw">Requête avancée FTS5</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="limit" data-i18n="limitLabel">Résultats</label>
+          <select id="limit" name="limit">
+            <option value="25">25</option>
+            <option value="50" selected>50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="yearFrom" data-i18n="yearFromLabel">Année min.</label>
+          <input id="yearFrom" name="yearFrom" type="number" min="1990" max="2100" placeholder="1994" />
+        </div>
+
+        <div>
+          <label for="yearTo" data-i18n="yearToLabel">Année max.</label>
+          <input id="yearTo" name="yearTo" type="number" min="1990" max="2100" placeholder="2025" />
+        </div>
+
+        <div>
+          <label for="bulletinFrom" data-i18n="bulletinFromLabel">Bulletin min.</label>
+          <input id="bulletinFrom" name="bulletinFrom" type="number" min="1" placeholder="1" />
+        </div>
+
+        <div>
+          <label for="bulletinTo" data-i18n="bulletinToLabel">Bulletin max.</label>
+          <input id="bulletinTo" name="bulletinTo" type="number" min="1" placeholder="99" />
+        </div>
+
+        <div class="span-2 actions">
+          <button id="searchButton" type="submit" data-i18n="searchButton">Rechercher</button>
+          <button id="clearButton" type="button" class="button-secondary" data-i18n="clearButton">Effacer</button>
+        </div>
+      </form>
+      <div id="searchMessage" class="message hidden" role="alert"></div>
+      <details class="help-block">
+        <summary data-i18n="helpSummary">Exemples de requêtes avancées</summary>
+        <div id="advancedHelp" class="advanced-help"></div>
+      </details>
+    </section>
+
+    <section id="resultsPanel" class="panel hidden">
+      <h2 data-i18n="resultsTitle">Résultats</h2>
+      <p id="resultsCount" class="muted"></p>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section id="bulletinsPanel" class="panel hidden">
+      <div class="panel-header">
+        <div>
+          <h2 data-i18n="bulletinsTitle">Liste des bulletins</h2>
+          <p id="bulletinsStatus" class="muted" data-i18n="noBulletinsYet">Aucun bulletin chargé pour le moment.</p>
+        </div>
+        <div id="stats" class="stats"></div>
+      </div>
+      <div class="table-wrap" role="region" tabindex="0" aria-label="Liste des bulletins, défilement horizontal sur écran étroit">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="tableNo">N°</th>
+              <th data-i18n="tableTitle">Titre</th>
+              <th data-i18n="tableYear">Année</th>
+              <th data-i18n="tablePages">Pages</th>
+              <th data-i18n="tableStatus">État</th>
+              <th data-i18n="tablePdf">PDF local</th>
+            </tr>
+          </thead>
+          <tbody id="bulletinsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="panel app-footer portal-footer" aria-label="Informations sur le portail">
+      <div class="footer-badges" aria-label="Technologies utilisées dans le bundle">
+        <div class="footer-badge-line">
+          <img alt="Python 3.11+" src="/static/common/badges/python-3-11.svg" width="93" height="20" loading="lazy" decoding="async">
+          <img alt="JavaScript" src="/static/common/badges/javascript.svg" width="73" height="20" loading="lazy" decoding="async">
+          <img alt="HTML5" src="/static/common/badges/html5.svg" width="56" height="20" loading="lazy" decoding="async">
+          <img alt="CSS" src="/static/common/badges/css.svg" width="40" height="20" loading="lazy" decoding="async">
+          <img alt="Bash" src="/static/common/badges/bash.svg" width="45" height="20" loading="lazy" decoding="async">
+          <img alt="SQL" src="/static/common/badges/sql.svg" width="40" height="20" loading="lazy" decoding="async">
+          <img alt="JSON" src="/static/common/badges/json.svg" width="45" height="20" loading="lazy" decoding="async">
+          <img alt="YAML" src="/static/common/badges/yaml.svg" width="47" height="20" loading="lazy" decoding="async">
+          <img alt="FastAPI" src="/static/common/badges/fastapi.svg" width="58" height="20" loading="lazy" decoding="async">
+          <img alt="Starlette" src="/static/common/badges/starlette.svg" width="66" height="20" loading="lazy" decoding="async">
+          <img alt="Uvicorn" src="/static/common/badges/uvicorn.svg" width="60" height="20" loading="lazy" decoding="async">
+          <img alt="Pydantic" src="/static/common/badges/pydantic.svg" width="65" height="20" loading="lazy" decoding="async">
+          <img alt="HTTPX" src="/static/common/badges/httpx.svg" width="54" height="20" loading="lazy" decoding="async">
+          <img alt="Requests" src="/static/common/badges/requests.svg" width="68" height="20" loading="lazy" decoding="async">
+          <img alt="urllib3" src="/static/common/badges/urllib3.svg" width="53" height="20" loading="lazy" decoding="async">
+          <img alt="Beautiful Soup 4" src="/static/common/badges/beautiful-soup-4.svg" width="109" height="20" loading="lazy" decoding="async">
+          <img alt="lbc" src="/static/common/badges/lbc.svg" width="34" height="20" loading="lazy" decoding="async">
+          <img alt="curl-cffi" src="/static/common/badges/curl-cffi.svg" width="59" height="20" loading="lazy" decoding="async">
+          <img alt="Argon2-cffi" src="/static/common/badges/argon2-cffi.svg" width="78" height="20" loading="lazy" decoding="async">
+          <img alt="Leaflet" src="/static/common/badges/leaflet.svg" width="87" height="20" loading="lazy" decoding="async">
+          <img alt="OpenStreetMap" src="/static/common/badges/openstreetmap.svg" width="104" height="20" loading="lazy" decoding="async">
+          <img alt="SQLite FTS5" src="/static/common/badges/sqlite-fts5.svg" width="84" height="20" loading="lazy" decoding="async">
+          <img alt="Tesseract OCR" src="/static/common/badges/tesseract-ocr.svg" width="97" height="20" loading="lazy" decoding="async">
+          <img alt="pytesseract" src="/static/common/badges/pytesseract.svg" width="82" height="20" loading="lazy" decoding="async">
+          <img alt="PyMuPDF" src="/static/common/badges/pymupdf.svg" width="69" height="20" loading="lazy" decoding="async">
+          <img alt="PDF.js" src="/static/common/badges/pdf-js.svg" width="95" height="20" loading="lazy" decoding="async">
+          <img alt="OpenCV" src="/static/common/badges/opencv.svg" width="63" height="20" loading="lazy" decoding="async">
+          <img alt="NumPy" src="/static/common/badges/numpy.svg" width="57" height="20" loading="lazy" decoding="async">
+          <img alt="Pillow" src="/static/common/badges/pillow.svg" width="49" height="20" loading="lazy" decoding="async">
+          <img alt="Linux" src="/static/common/badges/linux.svg" width="48" height="20" loading="lazy" decoding="async">
+          <img alt="Debian" src="/static/common/badges/debian.svg" width="57" height="20" loading="lazy" decoding="async">
+          <img alt="Ubuntu" src="/static/common/badges/ubuntu.svg" width="58" height="20" loading="lazy" decoding="async">
+          <img alt="Raspberry Pi OS" src="/static/common/badges/raspberry-pi-os.svg" width="106" height="20" loading="lazy" decoding="async">
+          <img alt="systemd" src="/static/common/badges/systemd.svg" width="65" height="20" loading="lazy" decoding="async">
+          <img alt="Cloudflare Tunnel" src="/static/common/badges/cloudflare-tunnel.svg" width="113" height="20" loading="lazy" decoding="async">
+          <img alt="ntfy" src="/static/common/badges/ntfy.svg" width="39" height="20" loading="lazy" decoding="async">
+          <img alt="pip" src="/static/common/badges/pip.svg" width="35" height="20" loading="lazy" decoding="async">
+          <img alt="venv" src="/static/common/badges/venv.svg" width="45" height="20" loading="lazy" decoding="async">
+          <img alt="Git" src="/static/common/badges/git.svg" width="34" height="20" loading="lazy" decoding="async">
+          <img alt="GitHub Actions" src="/static/common/badges/github-actions.svg" width="100" height="20" loading="lazy" decoding="async">
+          <img alt="Dependabot" src="/static/common/badges/dependabot.svg" width="86" height="20" loading="lazy" decoding="async">
+          <img alt="Node.js" src="/static/common/badges/node-js.svg" width="59" height="20" loading="lazy" decoding="async">
+          <img alt="pytest" src="/static/common/badges/pytest.svg" width="53" height="20" loading="lazy" decoding="async">
+          <img alt="pytest-asyncio" src="/static/common/badges/pytest-asyncio.svg" width="98" height="20" loading="lazy" decoding="async">
+          <img alt="Ruff" src="/static/common/badges/ruff.svg" width="40" height="20" loading="lazy" decoding="async">
+          <img alt="ShellCheck" src="/static/common/badges/shellcheck.svg" width="79" height="20" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <hr class="footer-separator">
+      <div class="footer-release">
+        <span data-bundle-version>Version 1.1.37</span>
+        <a class="github-link" href="https://github.com/nlerme/portail-entraide-opelgt" target="_blank" rel="noopener noreferrer"><img src="/static/common/github.svg" alt="" aria-hidden="true" width="18" height="18">Code source sur GitHub</a>
+      </div>
+      <div class="footer-bottom">
+        <p>Auteur : Nicolas Lermé — Copyright 2026</p>
+        <p class="made-with-love">Fait avec amour <span role="img" aria-label="cœur">❤️</span></p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/static/common/portal_ui.js?v=1.1.37"></script>
+  <script src="/static/common/session_timer.js?v=1.1.37"></script>
+  <script src="/static/bulletins/app.js?v=1.1.37"></script>
+</body>
+</html>
