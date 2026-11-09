@@ -1,0 +1,35 @@
+[Unit]
+Description=Portail Entraide Opel GT - worker catalogues
+After=network-online.target portail-entraide-opel-gt-web.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=opelgt
+Group=opelgt
+WorkingDirectory=/opt/portail-entraide-opel-gt
+Environment=PORTAIL_CONFIG=/etc/portail-entraide-opel-gt/config.json
+Environment=PORTAIL_SECRETS=/etc/portail-entraide-opel-gt/secrets.json
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/portail-entraide-opel-gt/venv-web/bin/python -m app.worker --queue catalogs
+Restart=on-failure
+RestartSec=5
+Nice=5
+CPUWeight=50
+IOWeight=50
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+ReadWritePaths=/var/lib/portail-entraide-opel-gt
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
