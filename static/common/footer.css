@@ -1,0 +1,40 @@
+/* Shared by all four service pages; local badges also work without Shields.io. */
+:root{--portal-footer-bg:#fff;--portal-footer-border:#d8e0e9;--portal-footer-text:#647286}
+html[data-theme="dark"]{--portal-footer-bg:#172130;--portal-footer-border:#33445a;--portal-footer-text:#aab8c9}
+body footer.panel.portal-footer{
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  min-width:0;
+  margin:1.25rem auto 1rem;
+  padding:1.25rem;
+  border:1px solid var(--portal-footer-border);
+  border-radius:1rem;
+  background:var(--portal-footer-bg);
+  color:var(--portal-footer-text);
+  box-shadow:0 8px 24px rgba(15,23,42,.08);
+  font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+  line-height:1.5;
+  text-align:center;
+}
+.portal-footer .footer-badges{display:block;margin:0;padding:0}
+.portal-footer .footer-badge-line{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.45rem;min-width:0}
+.portal-footer .footer-badge-line img{display:block;flex:0 1 auto;width:auto;height:20px;max-width:100%;border:0;border-radius:0;object-fit:contain}
+.portal-footer .footer-separator{display:block;width:100%;height:0;margin:1.1rem 0 .9rem;padding:0;border:0;border-top:1px solid var(--portal-footer-border)}
+.portal-footer .footer-bottom{display:grid;justify-items:center;gap:.35rem;margin:0;padding:0;border:0;color:var(--portal-footer-text);font-size:.78rem;line-height:1.5}
+.portal-footer .footer-bottom p{margin:0;max-width:100%;font-size:inherit;font-weight:400;color:var(--portal-footer-text);overflow-wrap:anywhere}
+.portal-footer .footer-bottom .made-with-love{font-weight:700;white-space:normal}
+.portal-footer .made-with-love [role="img"]{color:#e32322;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+@media(max-width:560px){
+  body footer.panel.portal-footer{padding:1rem .75rem}
+  .portal-footer .footer-badge-line{gap:.4rem}
+}
+
+.release-footer{display:block;width:100%;min-width:0;margin:1.25rem 0 0;color:var(--portal-footer-text);text-align:center}
+.release-footer .footer-separator{display:block;width:100%;height:0;margin:1rem 0 .8rem;border:0;border-top:1px solid var(--portal-footer-border)}
+.footer-release{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4rem 1.2rem;min-width:0;margin:0 0 .75rem;color:var(--portal-footer-text);font-size:calc(.78rem * var(--font-scale,1));line-height:1.5}
+.footer-release [data-bundle-version]{font-weight:600;white-space:nowrap}
+.footer-release .github-link{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;max-width:100%;color:inherit;text-decoration:underline;text-underline-offset:.18em;overflow-wrap:anywhere}
+.footer-release .github-link img{display:block;flex:0 0 18px;width:18px;height:18px;border:0;border-radius:0}
+.footer-release .github-link:focus-visible{outline:2px solid #2563eb;outline-offset:4px;border-radius:.2rem}
+html[data-theme="dark"] .footer-release .github-link img{filter:invert(1)}

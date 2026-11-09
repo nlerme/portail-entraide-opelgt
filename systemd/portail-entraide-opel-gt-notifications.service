@@ -1,0 +1,20 @@
+[Unit]
+Description=Portail Entraide Opel GT - incidents et notifications ntfy
+After=network.target
+
+[Service]
+Type=oneshot
+User=opelgt
+Group=opelgt
+WorkingDirectory=/opt/portail-entraide-opel-gt
+Environment=PORTAIL_CONFIG=/etc/portail-entraide-opel-gt/config.json
+Environment=PORTAIL_SECRETS=/etc/portail-entraide-opel-gt/secrets.json
+ExecStart=/opt/portail-entraide-opel-gt/venv-web/bin/python -m app.notifications
+TimeoutStartSec=150s
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/portail-entraide-opel-gt
+UMask=0077
